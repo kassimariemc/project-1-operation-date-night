@@ -1,0 +1,59 @@
+body {
+  margin: 0 auto;
+  font-family: 'Mulish', sans-serif;
+}
+
+header .jumbotron {
+  background-image: url(projector.jpg);
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 0;
+  height: 500px;
+}
+
+.heading {
+  margin-top: 150px;
+  background-color: rgb(234, 226, 183, 0.4);
+  font-family: 'Anton', sans-serif;
+  color: rgb(0, 48, 73);
+}
+
+.intro {
+  background-color: #FCBF49;
+  color: white;
+}
+
+.starter {
+  margin: 10px;
+}
+
+.scroll-btn:focus {
+  outline: none !important;
+  border: none !important;
+}
+
+.restaurant {
+  background-color: rgb(0, 48, 73);
+  color: #EAE2B7;
+  height: 500px;
+}
+
+.restaurant-inputs {
+  margin-top: 50px;
+}
+.restaurant-header {
+  font-size: 36px;
+  margin-top: 100px;
+}
+
+.btn-row {
+  margin-top: 50px;
+}
+.rest-btn {
+  color: #EAE2B7;
+  font-size: 36px;
+}
+.rest-btn:hover {
+  background-color: #EAE2B7;
+  color: rgb(0, 48, 73);
+}

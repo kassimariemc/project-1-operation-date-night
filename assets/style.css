@@ -3,6 +3,7 @@ body {
   font-family: 'Mulish', sans-serif;
 }
 
+/* Header */
 header .jumbotron {
   background-image: url(projector.jpg);
   background-size: cover;
@@ -18,6 +19,7 @@ header .jumbotron {
   color: rgb(0, 48, 73);
 }
 
+/* Intro */
 .intro {
   background-color: #FCBF49;
   color: white;
@@ -32,6 +34,7 @@ header .jumbotron {
   border: none !important;
 }
 
+/* Restaurant Generator */
 .restaurant {
   background-color: rgb(0, 48, 73);
   color: #EAE2B7;
@@ -57,6 +60,7 @@ header .jumbotron {
   color: rgb(0, 48, 73);
 }
 
+/* Movie Generator */
 .movie {
   background-color: #FCBF49;
   color: rgb(0, 48, 73);

@@ -7,18 +7,95 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Mulish&display=swap" rel="stylesheet">
   
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="assets/style.css" />
 
     <title>COVID Date Night</title>
   </head>
 
   <body>
     <header>
-      <div class="jumbotron">
-        <h1>Date Night at Home</h1>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center heading">
+          <h1 class="display-4">Date Night at Home</h1>
+          <p class="lead">Quarantine and Chill</p>
+        </div>
       </div>
     </header>
+
+    <main>
+      <!-- INTRO -->
+      <div class="jumbotron jumbotron-fluid intro">
+        <div class="container-fluid">
+          <div class="row starter">
+            <div class="col-md-10 mb-4 text-left">
+              <h2>Looking to have a special night with your main squeeze, but want stay in the safety of your home? Or do you find yourself too often asking</h2>  <h2>"What should we have for dinner?" ... "What should we watch tonight?"</h2> 
+              <h2>Well Date Night at Home is here to help.</h2>
+            </div>
+          <div class="row starter">
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mb-4 text-right starter-2">
+              <h2>Date Night at Home delivers an individually curated dinner and a movie just for you. In the time of a global pandemic, we all want to support our local eateries, but safely. And what goes better with takeout than a movie?</h2> <h2>Date Night at Home provides just that.</h2>
+            </div>
+          </div>
+          <div class="row starter">
+            <div class="col-md-10 mb-4 text-left">
+              <h2>Just scroll and select to generate a restaurant in your area offering takeout and then find your movie based on your preferred streaming service</h2>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn scroll-btn" id="scroll-btn"><img src="https://cloudcar.com/wp-content/uploads/2018/06/gif-bounce-arrow.gif" width="60%"/></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESTAURANT GENERATOR -->
+      <div class="jumbotron jumbotron-fluid restaurant">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5 text-center">
+              <h3 class="restaurant-header">Let's find some delivery or takeout for your special evening</h3>
+            </div>
+            <div class="col-md-6  restaurant-inputs">
+              <!-- Location Input -->
+              <div class="input-group input-group-lg mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-lg">City</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Durham, NC" id="rest-loc">
+              </div>
+              <!-- Radius Input -->
+              <div class="input-group input-group-lg mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-lg">Radius</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="miles" id="rest-radius">
+              </div>
+              <!-- Cuisine Input -->
+              <div class="input-group input-group-lg mb-4">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Cuisine</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>Choose...</option>
+                  <option value="1">Chinese</option>
+                  <option value="2">Vegan</option>
+                  <option value="3">BBQ</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- Restaurant button -->
+          <div class="text-center btn-row">
+            <button type="button" class="btn btn-outline-light btn-lg rest-btn" id="rest-btn">Let's Get Dinner</button>
+          </div>
+          <div id="restaurants"></div>
+        </div>
+      </div>
+
+    </main>
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

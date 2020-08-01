@@ -35,13 +35,12 @@ header .jumbotron {
 .restaurant {
   background-color: rgb(0, 48, 73);
   color: #EAE2B7;
-  height: 500px;
 }
 
-.restaurant-inputs {
+.restaurant-inputs, .movie-inputs {
   margin-top: 50px;
 }
-.restaurant-header {
+.restaurant-header, .movie-header {
   font-size: 36px;
   margin-top: 100px;
 }
@@ -56,4 +55,18 @@ header .jumbotron {
 .rest-btn:hover {
   background-color: #EAE2B7;
   color: rgb(0, 48, 73);
+}
+
+.movie {
+  background-color: #FCBF49;
+  color: rgb(0, 48, 73);
+}
+
+.movie-btn {
+  color: rgb(0, 48, 73);
+  font-size: 36px;
+}
+.movie-btn:hover {
+  background-color: rgb(0, 48, 73);
+  color: #FCBF49;
 }

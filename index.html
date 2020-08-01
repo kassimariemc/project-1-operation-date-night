@@ -59,12 +59,19 @@
               <h3 class="restaurant-header">Let's find some delivery or takeout for your special evening</h3>
             </div>
             <div class="col-md-6  restaurant-inputs">
-              <!-- Location Input -->
+              <!-- City Input -->
               <div class="input-group input-group-lg mb-4">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-lg">City</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Durham, NC" id="rest-loc">
+                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="New York City" id="rest-city">
+              </div>
+              <!-- State Input -->
+              <div class="input-group input-group-lg mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-lg">State</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="NY" id="rest-state">
               </div>
               <!-- Radius Input -->
               <div class="input-group input-group-lg mb-4">
@@ -80,9 +87,30 @@
                 </div>
                 <select class="custom-select" id="inputGroupSelect01">
                   <option selected>Choose...</option>
-                  <option value="1">Chinese</option>
-                  <option value="2">Vegan</option>
-                  <option value="3">BBQ</option>
+                  <option value="1">Any</option>
+                  <option value="2">American</option>
+                  <option value="3">Asian</option>
+                  <option value="4">Bakery</option>
+                  <option value="5">BBQ</option>
+                  <option value="6">Burgers</option>
+                  <option value="7">Deli</option>
+                  <option value="8">Gluten Free</option>
+                  <option value="9">Greek</option>
+                  <option value="10">Indian</option>
+                  <option value="11">Italian</option>
+                  <option value="12">Japanese</option>
+                  <option value="13">Korean</option>
+                  <option value="14">Mediterranean</option>
+                  <option value="15">Mexican</option>
+                  <option value="16">Pizza</option>
+                  <option value="17">Salad</option>
+                  <option value="18">Seafood</option>
+                  <option value="19">Spanish</option>
+                  <option value="20">Steakhouse</option>
+                  <option value="21">Sushi</option>
+                  <option value="22">Thai</option>
+                  <option value="23">Vegan</option>
+                  <option value="24">Vegetarian</option>
                 </select>
               </div>
             </div>
@@ -92,6 +120,84 @@
             <button type="button" class="btn btn-outline-light btn-lg rest-btn" id="rest-btn">Let's Get Dinner</button>
           </div>
           <div id="restaurants"></div>
+        </div>
+      </div>
+
+      <!-- MOVIE GENERATOR -->
+      <div class="jumbotron jumbotron-fluid movie">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5 text-center">
+              <h3 class="movie-header">Now let's get your flick rolling!</h3>
+            </div>
+            <div class="col-md-6  movie-inputs">
+              <!-- Decade Input -->
+              <div class="mb-4">
+                <h3 class="decade-header">Decades to Include:</h3>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    2020
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                  <label class="form-check-label" for="defaultCheck2">
+                    2010s
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                  <label class="form-check-label" for="defaultCheck2">
+                    2000s
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                  <label class="form-check-label" for="defaultCheck2">
+                    1990s
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                  <label class="form-check-label" for="defaultCheck2">
+                    1980s
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                  <label class="form-check-label" for="defaultCheck2">
+                    1970s
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                  <label class="form-check-label" for="defaultCheck2">
+                    1960s
+                  </label>
+                </div>
+              </div>
+            
+              <!-- Genre Input -->
+              <div class="input-group input-group-lg mb-4">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Genre</label>
+                </div>
+                <select class="custom-select" id="movie-genre">
+                  <option selected>Choose...</option>
+                  <option value="1">Action</option>
+                  <option value="2">Chick-Flick</option>
+                  <option value="3">Family</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- Movie button -->
+          <div class="text-center btn-row">
+            <button type="button" class="btn btn-outline-light btn-lg movie-btn" id="movie-btn">Let's Watch a Movie</button>
+          </div>
+          <div id="movies"></div>
         </div>
       </div>
 

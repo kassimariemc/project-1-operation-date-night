@@ -85,6 +85,7 @@ $('#rest-btn').on('click', function(){
 
 //MOVIE GENERATOR
 
+
 function getTitle() {
 
     var tmdbArr = [];
@@ -92,11 +93,11 @@ function getTitle() {
     var endYear = $("#end-year-input").val();
 
     $.ajax({
-        url: "https://api.themoviedb.org/3/discover/movie?api_key=183cf14b0fa970fabe87a2879d2f3aa1&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=1981-01-01&release_date.lte=1982-01-01&with_genres=80",
+        url: "https://api.themoviedb.org/3/discover/movie?api_key=183cf14b0fa970fabe87a2879d2f3aa1&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1981-01-01&primary_release_date.lte=1982-01-01&with_genres=80",
         method: "GET",
       }).then(function(response) {
         
-        for (var i = 0; i < 1; i++) {
+        for (var i = 0; i < 3; i++) {
 
         getMovieDetails(response.results[i].title)
 

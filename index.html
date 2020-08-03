@@ -133,7 +133,10 @@
             </div>
             <div class="col-md-6  movie-inputs">
               <!-- Decade Input -->
-              <div class="mb-4">
+
+
+
+              <!-- <div class="mb-4">
                 <h3 class="decade-header">Decades to Include:</h3>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="2020-01-01" id="decade1">
@@ -177,9 +180,25 @@
                     1960s
                   </label>
                 </div>
-              </div>
+              </div> -->
             
               <!-- Genre Input -->
+
+              <h3 class="date-selector">Show me movies from</h3>
+              <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Earliest Year</span>
+                </div>
+                <input type="text" class="form-control earliest-year-selector" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <h3 class="date-selector">until</h3>
+              <div class="input-group input-group-lg">
+                <div class="input-group-prepend ">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Latest Year</span>
+                </div>
+                <input type="text" class="form-control latest-year-selector" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <h3 class="genre-selector">that are about...</h3>
               <div class="input-group input-group-lg mb-4">
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Genre</label>

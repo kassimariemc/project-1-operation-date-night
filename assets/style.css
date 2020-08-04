@@ -44,7 +44,7 @@ header .jumbotron {
   margin-top: 50px;
 }
 .restaurant-header, .movie-header {
-  font-size: 36px;
+  font-size: 48px;
   margin-top: 100px;
 }
 
@@ -64,6 +64,7 @@ header .jumbotron {
 .movie {
   background-color: #FCBF49;
   color: rgb(0, 48, 73);
+  margin-bottom: 0;
 }
 
 .movie-btn {
@@ -75,6 +76,7 @@ header .jumbotron {
   color: #FCBF49;
 }
 
+
 .movie-row { 
   margin-top:20px;
 }
@@ -83,5 +85,13 @@ header .jumbotron {
   background-color: rgb(0, 48, 73);
   color: #EAE2B7;
   min-height:357px;
+
+
+/* Footer */
+.footer {
+  margin-top: 0;
+  padding: 2px;
+  background-color: #D62828;
+  color: #EAE2B7;
 
 }

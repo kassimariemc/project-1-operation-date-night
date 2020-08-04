@@ -86,14 +86,17 @@ $('#rest-btn').on('click', function(){
 //MOVIE GENERATOR
 
 
-function getTitle() {
+$("#movie-btn").on("click", function () {
 
-    var tmdbArr = [];
-    var startYear = $("#start-year-input").val();
-    var endYear = $("#end-year-input").val();
+    
+    var startYear = $(".earliest-year-selector").val();
+    var endYear = $(".latest-year-selector").val();
+    var genre = $("#genre-input").val();
+    console.log("This is the first year " + startYear);
+    console.log("This is the second year" + endYear);
 
     $.ajax({
-        url: "https://api.themoviedb.org/3/discover/movie?api_key=183cf14b0fa970fabe87a2879d2f3aa1&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1981-01-01&primary_release_date.lte=1982-01-01&with_genres=80",
+        url: "https://api.themoviedb.org/3/discover/movie?api_key=183cf14b0fa970fabe87a2879d2f3aa1&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=" + startYear + "-01-01&primary_release_date.lte=" + endYear + "-12-31&with_genres=" + genre,
         method: "GET",
       }).then(function(response) {
         
@@ -101,13 +104,16 @@ function getTitle() {
 
         getMovieDetails(response.results[i].title)
 
+        
 
         }
     });
 
-}
+});
 
 function getMovieDetails(title) {
+
+  $(".movie-col").remove();
 
     var param = $.param({
         t: title,
@@ -120,11 +126,39 @@ function getMovieDetails(title) {
         method: "GET", 
     }).then(function(movie) {
 
-        console.log(movie);
+ 
+      console.log("is this working?");
+        var movieRow = $(".movie-row");
+        var movieCol = $("<div>").attr("class", "col-lg-4 movie-col");
+        var movieCard = $("<div>").attr("class", "card movie-card");
+        var movieCardHeader = $("<div>").attr("class", "card-header movie-card-header");
+        var movieCardBody = $("<div>").attr("class", "card-body movie-card-body");
+
+        var movieName = $("<h4>").html(movie.Title).attr("class", "movie-title");
+        var movieRating = $("<p>").html("Rated " + movie.Rated).attr("class", "p-rated");
+        var movieCast = $("<p>").html("Starring | " + movie.Actors).attr("class", "p-cast");
+        var movieScore = $("<p>").html(movie.Ratings[1].Source + " | " + movie.Ratings[1].Value).attr("class", "p-score");
+        var moviePlot = $("<p>").html(movie.Plot).attr("class", "p-plot");
+        var movieTrailer = $("<a>").attr("href", "https://www.youtube.com/results?search_query=" + movie.Title + "+trailer").attr("target", "_blank").html("View trailers here");
+        var linkSeparator = $("<div>");
+        var movieStreams = $("<a>").attr("href", "https://www.justwatch.com/us/search?q=" + movie.Title).attr("target", "_blank").html("Where to find it");
+
+        movieRow.append(movieCol.append(movieCard));
+        movieCard.append(movieCardHeader.append(movieName));
+        movieCard.append(movieCardBody);
+        movieCardBody.append(movieRating);
+        movieCardBody.append(movieCast);
+        movieCardBody.append(movieScore);
+        movieCardBody.append(moviePlot);
+        movieCardBody.append(movieTrailer);
+        movieCardBody.append(linkSeparator);
+        movieCardBody.append(movieStreams);
+
+
 
     })
     
 };
 
-getTitle();
+// getTitle();
 

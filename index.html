@@ -36,12 +36,12 @@
           <div class="row starter">
             <div class="col-md-2"></div>
             <div class="col-md-10 mb-4 text-right starter-2">
-              <h2>Date Night at Home delivers an individually curated dinner and a movie just for you. In the time of a global pandemic, we all want to support our local eateries, but safely. And what goes better with takeout than a movie?</h2> <h2>Date Night at Home provides just that.</h2>
+              <h2>Date Night at Home delivers an individually curated dinner and a movie just for you. In the time of a global pandemic, we all want to support our local eateries, but safely. And what goes better with takeout than a movie on the couch? Date Night at Home provides just that.</h2>
             </div>
           </div>
           <div class="row starter">
             <div class="col-md-10 mb-4 text-left">
-              <h2>Just scroll and select to generate a restaurant in your area offering takeout and then find your movie based on your preferred streaming service</h2>
+              <h2>Just scroll and select to generate a restaurant in your area offering takeout and then find your movie based on your preferred genre</h2>
             </div>
           </div>
           <div class="text-center">
@@ -117,7 +117,7 @@
           </div>
           <!-- Restaurant button -->
           <div class="text-center btn-row">
-            <button type="button" class="btn btn-outline-light btn-lg rest-btn" id="rest-btn">Let's Get Dinner</button>
+            <button type="button" class="btn btn-outline-light btn-lg rest-btn" id="rest-btn">Find My Dinner</button>
           </div>
           <div id="restaurants"></div>
         </div>
@@ -131,111 +131,85 @@
             <div class="col-md-5 text-center">
               <h3 class="movie-header">Now let's get your flick rolling!</h3>
             </div>
-            <div class="col-md-6  movie-inputs">
+            <div class="col-md-6 movie-inputs">
+              
               <!-- Decade Input -->
+              
+                
+              <h3 class="date-selector">Show me movies</h3>
+              <!-- From -->
+              <div class="form-group row">
+                <div class="col-md-10">
+                  <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">from</span>
+                    </div>
+                    <input type="text" class="form-control earliest-year-selector" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="1980">
+                  </div>
+                </div>
+              </div>
+              <!-- <h3 class="date-selector">until</h3> -->
+              <!-- To -->
+              <div class="form-group row">
+                <div class="col-md-10">
+                  <div class="input-group input-group-lg">
+                    <div class="input-group-prepend ">
+                      <span class="input-group-text" id="inputGroup-sizing-default">until</span>
+                    </div>
+                    <input type="text" class="form-control latest-year-selector" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="2020">
+                  </div>
+                </div>
+              </div>
 
-
-
-              <!-- <div class="mb-4">
-                <h3 class="decade-header">Decades to Include:</h3>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="2020-01-01" id="decade1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    2020
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="2010-01-01" id="decade2">
-                  <label class="form-check-label" for="defaultCheck2">
-                    2010s
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="2000-01-01" id="decade3">
-                  <label class="form-check-label" for="defaultCheck2">
-                    2000s
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="1990-01-01" id="decade4">
-                  <label class="form-check-label" for="defaultCheck2">
-                    1990s
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="1980-01-01" id="decade5">
-                  <label class="form-check-label" for="defaultCheck2">
-                    1980s
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="1970-01-01" id="decade6">
-                  <label class="form-check-label" for="defaultCheck2">
-                    1970s
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="1960-01-01" id="decade7">
-                  <label class="form-check-label" for="defaultCheck2">
-                    1960s
-                  </label>
-                </div>
-              </div> -->
-            
               <!-- Genre Input -->
-
-              <h3 class="date-selector">Show me movies from</h3>
-              <div class="input-group input-group-lg">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Earliest Year</span>
-                </div>
-                <input type="text" class="form-control earliest-year-selector" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-              </div>
-              <h3 class="date-selector">until</h3>
-              <div class="input-group input-group-lg">
-                <div class="input-group-prepend ">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Latest Year</span>
-                </div>
-                <input type="text" class="form-control latest-year-selector" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-              </div>
+              
               <h3 class="genre-selector">that are about...</h3>
-              <div class="input-group input-group-lg mb-4">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Genre</label>
+
+              <div class="form-group row">
+                <div class="col-md-10">
+                  <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Genre</label>
+                    </div>
+                    <select class="custom-select" id="genre-input">
+                      <option selected>Choose...</option>
+                      <option value="28">Action</option>
+                      <option value="12">Adventure</option>
+                      <option value="16">Animation</option>
+                      <option value="35">Comedy</option>
+                      <option value="80">Crime</option>
+                      <option value="99">Documentary</option>
+                      <option value="18">Drama</option>
+                      <option value="10751">Family</option>
+                      <option value="14">Fantasy</option>
+                      <option value="36">History</option>
+                      <option value="27">Horror</option>
+                      <option value="10402">Music</option>
+                      <option value="9648">Mystery</option>
+                      <option value="10749">Romance</option>
+                      <option value="878">Science Fiction</option>
+                      <option value="53">Thriller</option>
+                      <option value="10752">War</option>
+                      <option value="37">Western</option>
+                    </select>
+                  </div>
                 </div>
-                <select class="custom-select" id="genre-input">
-                  <option selected>Choose...</option>
-                  <option value="28">Action</option>
-                  <option value="12">Adventure</option>
-                  <option value="16">Animation</option>
-                  <option value="35">Comedy</option>
-                  <option value="80">Crime</option>
-                  <option value="99">Documentary</option>
-                  <option value="18">Drama</option>
-                  <option value="10751">Family</option>
-                  <option value="14">Fantasy</option>
-                  <option value="36">History</option>
-                  <option value="27">Horror</option>
-                  <option value="10402">Music</option>
-                  <option value="9648">Mystery</option>
-                  <option value="10749">Romance</option>
-                  <option value="878">Science Fiction</option>
-                  <option value="53">Thriller</option>
-                  <option value="10752">War</option>
-                  <option value="37">Western</option>
-                </select>
               </div>
             </div>
           </div>
           <!-- Movie button -->
           <div class="text-center btn-row">
-            <button type="button" class="btn btn-outline-light btn-lg movie-btn" id="movie-btn">Let's Watch a Movie</button>
+            <button type="button" class="btn btn-outline-light btn-lg movie-btn" id="movie-btn">Find My Movie</button>
           </div>
           <div id="movies"></div>
         </div>
       </div>
 
     </main>
+
+    <footer class="footer nav sticky-bottom justify-content-center">
+      Date Night at Home App v1.0
+    </footer>
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

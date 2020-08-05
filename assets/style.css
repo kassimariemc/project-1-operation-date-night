@@ -83,6 +83,16 @@ header .jumbotron {
 }
 
 
+.restaurant-row { 
+  margin-top:20px;
+}
+
+.restaurant-card {
+  background-color: #FCBF49;
+  color: rgb(0, 48, 73);
+  min-height:357px;
+}
+
 .movie-row { 
   margin-top:20px;
 }
@@ -100,5 +110,4 @@ footer {
   padding: 2px;
   background-color: #D62828;
   color: #EAE2B7;
-
 }

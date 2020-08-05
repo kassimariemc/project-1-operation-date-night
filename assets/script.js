@@ -101,14 +101,15 @@ $("#movie-btn").on("click", function () {
   
       // Ensuring we do not always populate the top three results, allowing the user to search multiple times if the three titles that populate do not meet their needs
 
-      var j = Math.floor(Math.random() * response.results.length-3);
+      var j = Math.floor(Math.random() * response.results.length - 4);
 
+      // console.log(response.results.length + " is how many we have to choose from");
       for (var i = j; i < (j + 3); i++) {
-
       var tmdbFullYear = response.results[i].release_date;
       var tmdbYearOnly = tmdbFullYear.substring(0,4);
-      var title = response.results[i].title;
-        
+      var title = response.results[i].original_title;
+      // console.log(response);
+      // console.log("index " + i + " "  + title + " is the tmdb title");
       // Clearing out previous movies generated
       $(".movie-col").remove();
 
@@ -125,6 +126,7 @@ $("#movie-btn").on("click", function () {
             method: "GET", 
         }).then(function(movie) {
     
+          // console.log(movie.Title + " is the movie name in omdb");
           // Generating card elements for each movie chosen.
             var movieRow = $(".movie-row");
             var movieCol = $("<div>").attr("class", "col-lg-4 movie-col");

@@ -12,6 +12,12 @@ header .jumbotron {
   height: 500px;
 }
 
+.jumbotron {
+
+  margin-bottom:0px;
+  
+}
+
 .heading {
   margin-top: 150px;
   background-color: rgb(234, 226, 183, 0.4);

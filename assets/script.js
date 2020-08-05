@@ -101,20 +101,20 @@ $("#movie-btn").on("click", function () {
   
       // Ensuring we do not always populate the top three results, allowing the user to search multiple times if the three titles that populate do not meet their needs
 
-      var j = Math.floor(Math.random() * response.results.length - 4);
+    var j = Math.floor(Math.random() * response.results.length - 4);
 
       // console.log(response.results.length + " is how many we have to choose from");
       for (var i = j; i < (j + 3); i++) {
-      var tmdbFullYear = response.results[i].release_date;
-      var tmdbYearOnly = tmdbFullYear.substring(0,4);
-      var title = response.results[i].original_title;
+        var tmdbFullYear = response.results[i].release_date;
+        var tmdbYearOnly = tmdbFullYear.substring(0,4);
+        var title = response.results[i].original_title;
       // console.log(response);
       // console.log("index " + i + " "  + title + " is the tmdb title");
       // Clearing out previous movies generated
-      $(".movie-col").remove();
+        $(".movie-col").remove();
 
-      // Setting parameters for second ajax call (omdb)
-      var param = $.param({
+        // Setting parameters for second ajax call (omdb)
+        var param = $.param({
           t: title,
           y: tmdbYearOnly,
           plot: "short",

@@ -85,10 +85,11 @@ header .jumbotron {
   background-color: rgb(0, 48, 73);
   color: #EAE2B7;
   min-height:357px;
-
+}
 
 /* Footer */
-.footer {
+
+footer {
   margin-top: 0;
   padding: 2px;
   background-color: #D62828;

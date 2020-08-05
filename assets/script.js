@@ -10,7 +10,7 @@ var userState= "";
 var radius= 0;
 
 // URL Base
-var queryURLBase = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=";
+var queryURLBase = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=";
 
 //Functions
 //================================================
@@ -26,12 +26,50 @@ function runQuery(rQueryURL){
   //   console.log(placesData);
   // })
   .then(function(placesData){
+    
     for (var i=0; i<3; i++){
-      var name = placesData.results[i].name;
-      console.log(name);
-      console.log(placesData.results[0].name);
+      //Restaurant Name
+      var restaurantName = $("<h4>").html(placesData.results[i].name).attr("class", "restaurant-title");
+      //Restaurant Address
+      var restaurantAddress = $("<p>").html("Address: " + placesData.results[i].formatted_address).attr("class", "restaurant-address");
+      // console.log(address);
+      //Restaurant Rating
+      var restaurantRating = $("<p>").html("Rating: " + placesData.results[i].rating + "/5").attr("class", "p-rated");
+      // console.log(rating)
+
+        var restaurantRow = $(".restaurant-row");
+        var restaurantCol = $("<div>").attr("class", "col-lg-4 restaurant-col");
+        var restaurantCard = $("<div>").attr("class", "card restaurant-card");
+        var restaurantCardHeader = $("<div>").attr("class", "card-header restaurant-card-header");
+        var restaurantCardBody = $("<div>").attr("class", "card-body restaurant-card-body");
+
+        restaurantRow.append(restaurantCol.append(restaurantCard));
+        restaurantCard.append(restaurantCardHeader.append(restaurantName));
+        restaurantCard.append(restaurantCardBody);
+        restaurantCardBody.append(restaurantRating);
+        restaurantCardBody.append(restaurantAddress);
+       
+        getRestaurantDetails (placesData.results[i].place_id);  
     }
   })
+};
+
+function getRestaurantDetails(restaurant) {
+$.ajax({
+  url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + restaurant + "&fields=name,url,website,rating,formatted_phone_number" + authKey,
+  method: "GET"}).then(function(placesData2){
+    restaurantCard.each(function() {
+    var restaurantPhone =  $("<p>").html("Phone: " + placesData2.result.formatted_phone_number).attr("class", "restaurant-phone");
+ 
+    var restaurantMap =  $("<a>").text("Google Maps").attr("href", placesData2.result.url);
+    
+    var restaurantURL =  $("<a>").text("Restaurant Website").attr("href", placesData2.result.website);
+
+    restaurantCardBody.append(restaurantPhone);
+    restaurantCardBody.append(restaurantMap);
+    restaurantCardBody.append(restaurantURL);
+    });
+  });
 };
 
 //MAIN PROCESS
@@ -51,36 +89,23 @@ $('#rest-btn').on('click', function(){
 
   //Get City
   var userCity = $('#rest-city').val().trim();
-
   //Add in the City
   var restURL = restURL + userCity;
-
   //Get State
   var userState = $('#rest-state').val();
-
   //Add in the State
   var restURL = restURL + "+" + userState;
-
   //Get Radius
   var radius = $('#rest-radius').val() * 1609;
-
   //Add in the radius
   var restURL = restURL + "&radius=" + radius
-
   //Add API Key
   var restURL = restURL + authKey;
-
   //Send the AJAX Call the newly assembled URL
   runQuery(restURL);
 });
 
 
-
-//1. Retrieve user inputs and convert to variables
-//2. Use those variables to run an AJAX call to Google Places
-//3. Break down the Google Places object into usable fields
-//4. Dynamically generate html content
-//5. Dealing with "edge cases" -- bugs or situations that are not intuitive
 
 
 //MOVIE GENERATOR

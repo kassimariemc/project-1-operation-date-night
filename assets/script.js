@@ -28,6 +28,8 @@ function runQuery(rQueryURL){
   .then(function(placesData){
     
     for (var i=0; i<3; i++){
+
+      $(".restaurant-col").remove();
      
         getRestaurantDetails (placesData.results[i].place_id);  
     }
@@ -137,18 +139,19 @@ $("#movie-btn").on("click", function () {
       url: "https://api.themoviedb.org/3/discover/movie?api_key=183cf14b0fa970fabe87a2879d2f3aa1&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=" + startYear + "-01-01&primary_release_date.lte=" + endYear + "-12-31&with_genres=" + genre + "&with_original_language=en",
       method: "GET",
   }).then(function(response) {
-  
+    // console.log(response.results);
+    
       // Ensuring we do not always populate the top three results, allowing the user to search multiple times if the three titles that populate do not meet their needs
 
-    var j = Math.floor(Math.random() * response.results.length - 4);
-
-      // console.log(response.results.length + " is how many we have to choose from");
+    var j = Math.floor(Math.random() * (response.results.length - 4));
+    
       for (var i = j; i < (j + 3); i++) {
+
         var tmdbFullYear = response.results[i].release_date;
         var tmdbYearOnly = tmdbFullYear.substring(0,4);
         var title = response.results[i].original_title;
-      // console.log(response);
-      // console.log("index " + i + " "  + title + " is the tmdb title");
+      
+      console.log("index " + i + " "  + title + " is the tmdb title");
       // Clearing out previous movies generated
         $(".movie-col").remove();
 
@@ -164,14 +167,21 @@ $("#movie-btn").on("click", function () {
             url:"https://www.omdbapi.com/?" + param,
             method: "GET", 
         }).then(function(movie) {
+
+          console.log(movie);
     
-          // console.log(movie.Title + " is the movie name in omdb");
+          console.log(movie.Title + " is the movie name in omdb");
           // Generating card elements for each movie chosen.
             var movieRow = $(".movie-row");
             var movieCol = $("<div>").attr("class", "col-lg-4 movie-col");
             var movieCard = $("<div>").attr("class", "card movie-card");
             var movieCardHeader = $("<div>").attr("class", "card-header movie-card-header");
-            var movieCardBody = $("<div>").attr("class", "card-body movie-card-body");
+            var movieCardBody = $("<div>").attr("class", "card-body movie-card-body")
+            
+            // We're going to make something like line 183 work for the above.  Thinking maybe just set the poster as the body and then on hover show the other p-tags??  Currently I can't format the image without also formatting the text, so it's not readable.
+
+            // .css({"background-image":"url(" + movie.Poster + ")","background-size":"100%","filter":"grayscale(100%","opacity":"0.5"});
+
             var movieName = $("<h4>").html(movie.Title).attr("class", "movie-title");
             var movieRating = $("<p>").html("Rated " + movie.Rated).attr("class", "p-rated");
             var movieCast = $("<p>").html("Starring | " + movie.Actors).attr("class", "p-cast");

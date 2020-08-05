@@ -10,7 +10,7 @@ var userState= "";
 var radius= 0;
 
 // URL Base
-var queryURLBase = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=";
+var queryURLBase = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=";
 
 //Functions
 //================================================
@@ -26,12 +26,63 @@ function runQuery(rQueryURL){
   //   console.log(placesData);
   // })
   .then(function(placesData){
+    
     for (var i=0; i<3; i++){
-      var name = placesData.results[i].name;
-      console.log(name);
-      console.log(placesData.results[0].name);
+     
+        getRestaurantDetails (placesData.results[i].place_id);  
     }
   })
+};
+
+//Function to Call for restaurant Details
+function getRestaurantDetails(restaurant) {
+$.ajax({
+  url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + restaurant + "&fields=name,formatted_address,url,website,rating,formatted_phone_number" + authKey,
+  method: "GET"}).then(function(placesData2){
+ 
+      //Restaurant Name
+       var restaurantName = placesData2.result.name;
+       console.log(restaurantName);
+       var restaurantNameCard = $("<h4>").html(restaurantName).attr("class", "rest-title");
+
+       //Restaurant Address
+       var restaurantAddress = placesData2.result.formatted_address;
+        console.log(restaurantAddress);
+        var restaurantAddressCard = $("<p>").html("Address: " + restaurantAddress).attr("class", "p-address");
+
+      //Restaurant Number
+      var restaurantPhone = placesData2.result.formatted_phone_number;
+      console.log(restaurantPhone)
+      var restaurantPhoneCard = $("<p>").html("Phone: " + restaurantPhone).attr("class", "p-phone");
+
+      //Restaurant Rating
+      var restaurantRating = placesData2.result.rating
+      console.log(restaurantRating);
+      var restaurantRatingCard = $("<p>").html("Rating: " + restaurantRating + "/5").attr("class", "p-address");
+
+      //Restaurant GoogleMaps Link      
+      var restaurantMap =  $("<a>").text("Google Maps").attr("href", placesData2.result.url);
+  
+      //Restaurant Website Link
+      var restaurantURL =  $("<a>").text("Restaurant Website").attr("href", placesData2.result.website);
+
+      //Restaurant Cards
+      var restaurantRow = $(".restaurant-row");
+      var restaurantCol = $("<div>").attr("class", "col-lg-4 restaurant-col");
+      var restaurantCard = $("<div>").attr("class", "card restaurant-card");
+      var restaurantCardHeader = $("<div>").attr("class", "card-header restaurant-card-header");
+      var restaurantCardBody = $("<div>").attr("class", "card-body restaurant-card-body");
+
+      restaurantRow.append(restaurantCol.append(restaurantCard));
+      restaurantCard.append(restaurantCardHeader.append(restaurantNameCard));
+      restaurantCard.append(restaurantCardBody);
+      restaurantCardBody.append(restaurantAddressCard);
+      restaurantCardBody.append(restaurantMap);
+      restaurantCardBody.append(restaurantPhoneCard);
+      restaurantCardBody.append(restaurantRatingCard);
+      restaurantCardBody.append(restaurantURL);
+    // }
+  });
 };
 
 //MAIN PROCESS
@@ -51,36 +102,24 @@ $('#rest-btn').on('click', function(){
 
   //Get City
   var userCity = $('#rest-city').val().trim();
-
   //Add in the City
   var restURL = restURL + userCity;
-
   //Get State
   var userState = $('#rest-state').val();
-
   //Add in the State
   var restURL = restURL + "+" + userState;
-
   //Get Radius
   var radius = $('#rest-radius').val() * 1609;
-
   //Add in the radius
   var restURL = restURL + "&radius=" + radius
-
   //Add API Key
   var restURL = restURL + authKey;
-
+  console.log(restURL);
   //Send the AJAX Call the newly assembled URL
   runQuery(restURL);
 });
 
 
-
-//1. Retrieve user inputs and convert to variables
-//2. Use those variables to run an AJAX call to Google Places
-//3. Break down the Google Places object into usable fields
-//4. Dynamically generate html content
-//5. Dealing with "edge cases" -- bugs or situations that are not intuitive
 
 
 //MOVIE GENERATOR

@@ -3,6 +3,11 @@ body {
   font-family: 'Mulish', sans-serif;
 }
 
+h4 {
+  font-size:19px;
+  font-weight:600;
+}
+
 /* Header */
 header .jumbotron {
   background-image: url(images/projector.jpg);
@@ -90,7 +95,7 @@ header .jumbotron {
 .restaurant-card {
   background-color: #FCBF49;
   color: rgb(0, 48, 73);
-  min-height:357px;
+  
 }
 
 .movie-row { 
@@ -100,8 +105,26 @@ header .jumbotron {
 .movie-card {
   background-color: rgb(0, 48, 73);
   color: #EAE2B7;
-  min-height:357px;
+  
 }
+
+.card-header {
+  height:70px;
+}
+
+.card-body {
+  height:357px;
+}
+
+.p-cast {
+  font-size:14px;
+}
+
+.p-plot {
+  font-size:14px;
+}
+
+
 
 /* Footer */
 

@@ -118,25 +118,28 @@ $(document).ready(function () {
 
 
   //MOVIE GENERATOR
-  $("#movie-btn").on("click", function () {
+  $("#movie-btn").on("click", function findMovie() {
 
     // Assigning variables to our user-selected search criteria
     var startYear = $(".earliest-year-selector").val();
     var endYear = $(".latest-year-selector").val();
     var genre = $("#genre-input").val();
 
+
     // Ajax call to retrieve movie titles based off of above criteria (tmdb)
     $.ajax({
       url: "https://api.themoviedb.org/3/discover/movie?api_key=183cf14b0fa970fabe87a2879d2f3aa1&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=" + startYear + "-01-01&primary_release_date.lte=" + endYear + "-12-31&with_genres=" + genre + "&with_original_language=en",
       method: "GET",
     }).then(function (response) {
-      // console.log(response.results);
+      console.log(response.results);
 
       // Ensuring we do not always populate the top three results, allowing the user to search multiple times if the three titles that populate do not meet their needs
 
       var j = Math.floor(Math.random() * (response.results.length - 4));
 
       for (var i = j; i < (j + 3); i++) {
+
+        console.log("We are starting at index " + j);
 
         var tmdbFullYear = response.results[i].release_date;
         var tmdbYearOnly = tmdbFullYear.substring(0, 4);
@@ -161,6 +164,16 @@ $(document).ready(function () {
 
           console.log(movie);
 
+          // Sometimes the movie in tmdb won't be in the omdb database, or its title will be in a format that omdb won't recognize and therefore will return the movie as undefined.  This conditional restarts the function should that happen so that three movies fully populate.  
+
+          if (movie.Response === "False") {
+
+            // console.log("Here is the tmdb one messing us up " + title);
+            // console.log("And here is the omdb value which should say undefined" + movie.Title);
+            findMovie();
+
+          }
+
           console.log(movie.Title + " is the movie name in omdb");
           // Generating card elements for each movie chosen.
           var movieRow = $(".movie-row");
@@ -171,7 +184,7 @@ $(document).ready(function () {
 
           // We're going to make something like line 183 work for the above.  Thinking maybe just set the poster as the body and then on hover show the other p-tags??  Currently I can't format the image without also formatting the text, so it's not readable.
 
-          // .css({"background-image":"url(" + movie.Poster + ")","background-size":"100%","filter":"grayscale(100%","opacity":"0.5"});
+          // .css({"background-image":"url(" + movie.Poster + ")","background-size":"100%"});
 
           var movieName = $("<h4>").html(movie.Title).attr("class", "movie-title");
           var movieRating = $("<p>").html("Rated " + movie.Rated).attr("class", "p-rated");
@@ -190,7 +203,6 @@ $(document).ready(function () {
       }
     });
   });
-});
 
 
 

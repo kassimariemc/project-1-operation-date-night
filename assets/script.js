@@ -137,6 +137,10 @@ $(document).ready(function () {
 
     $(".movie-error-box").css("display", "block").text("Oops!  Please choose a starting year earlier than or equal to the ending year.")
 
+  } else if (parseInt(startYear) != startYear || parseInt(endYear) != endYear) {
+
+    $(".movie-error-box").css("display", "block").text("Oops!  Your start and end year must be a four-digit number.")
+
   } else {
 
     $(".movie-error-box").css("display", "none");

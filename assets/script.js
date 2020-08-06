@@ -141,7 +141,7 @@ $(document).ready(function () {
 
     $(".movie-error-box").css("display", "block").text("Oops!  Please choose a genre.")
 
-  } else if (startYear > 2020 || startYear < 1900 || endYear < 1900) {
+  } else if (startYear > 2020 || startYear < 1900 || endYear < 1900 || endYear > 2020) {
 
     $(".movie-error-box").css("display", "block").text("Oops!  Please choose a start and end year between 1900 and 2020.")
 
@@ -152,6 +152,7 @@ $(document).ready(function () {
   } else if (parseInt(startYear) != startYear || parseInt(endYear) != endYear) {
 
     $(".movie-error-box").css("display", "block").text("Oops!  Your start and end year must be a four-digit number.")
+
 
   } else {
 

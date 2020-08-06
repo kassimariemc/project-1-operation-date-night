@@ -47,12 +47,7 @@ header .jumbotron {
   border: none !important;
 }
 
-/* Restaurant Generator */
-.restaurant {
-  background-color: rgb(0, 48, 73);
-  color: #EAE2B7;
-}
-
+/* Both Generators */
 .restaurant-inputs, .movie-inputs {
   margin-top: 50px;
 }
@@ -61,16 +56,65 @@ header .jumbotron {
   margin-top: 100px;
 }
 
+.card {
+  margin-top: 5px;
+}
+
+.card-header {
+  height: 70px;
+}
+
+.card-body {
+  height: 50vh;
+}
+
+/* Restaurant Generator */
+.restaurant {
+  background-color: rgb(0, 48, 73);
+  color: #EAE2B7;
+}
+
 .btn-row {
   margin-top: 50px;
 }
+
 .rest-btn {
   color: #EAE2B7;
   font-size: 36px;
 }
+
 .rest-btn:hover {
   background-color: #EAE2B7;
   color: rgb(0, 48, 73);
+}
+
+.restaurant-row { 
+  margin-top: 20px;
+}
+
+.restaurant-card {
+  background-color: #FCBF49;
+  color: rgb(0, 48, 73);
+}
+
+.restaurant-card-body a {
+  color:#D62828;
+}
+
+.img-thumbnail {
+  margin-bottom: 10px;
+}
+
+.restaurant-card-body p, 
+.restaurant-card-body a {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.rest-hours {
+  font-size: 12px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /* Movie Generator */
@@ -125,21 +169,11 @@ header .jumbotron {
 .movie-card {
   background-color: rgb(0, 48, 73);
   color: #EAE2B7;
-  
 }
 
 .movie-card-body a {
   color:#FCBF49;
 }
-
-.card-header {
-  height:70px;
-}
-
-.card-body {
-  height:357px;
-}
-
 
 .p-cast {
   font-size:14px;
@@ -148,9 +182,6 @@ header .jumbotron {
 .p-plot {
   font-size:14px;
 }
-
-
-
 
 /* Footer */
 

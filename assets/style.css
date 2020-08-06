@@ -133,6 +133,35 @@ header .jumbotron {
   color: #FCBF49;
 }
 
+
+.restaurant-row { 
+  margin-top:20px;
+}
+
+.restaurant-card {
+  background-color: #FCBF49;
+  color: rgb(0, 48, 73);
+  
+}
+
+.movie-error-box {
+
+  display:none;
+  background-color:rgb(0, 48, 73);
+  color:#D62828;
+  border: 1px solid #D62828;
+  border-radius:5px;
+  width:100%;
+  margin-top:41px;
+  
+}
+
+.movie-error-text {
+
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
 .movie-row { 
   margin-top:20px;
 }

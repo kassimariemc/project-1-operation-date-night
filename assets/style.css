@@ -140,6 +140,15 @@ header .jumbotron {
   height:357px;
 }
 
+.movie-poster {
+  position:absolute;
+  top:0%;
+  left:0%;
+  width:100%;
+  height:100%;
+
+}
+
 
 .p-cast {
   font-size:14px;

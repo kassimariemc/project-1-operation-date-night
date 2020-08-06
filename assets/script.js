@@ -198,7 +198,8 @@ $(document).ready(function () {
             var movieCol = $("<div>").attr("class", "col-lg-4 movie-col");
             var movieCard = $("<div>").attr("class", "card movie-card");
             var movieCardHeader = $("<div>").attr("class", "card-header movie-card-header");
-            var movieCardBody = $("<div>").attr("class", "card-body movie-card-body")
+            var movieCardBody = $("<div>").attr("class", "card-body movie-card-body").css("z-index", "1");
+            var moviePoster = $("<img>").attr({"src":movie.Poster,"class":"movie-poster"}).css("z-index", "0");
 
             // We're going to make something like line 183 work for the above.  Thinking maybe just set the poster as the body and then on hover show the other p-tags??  Currently I can't format the image without also formatting the text, so it's not readable.
 
@@ -215,7 +216,18 @@ $(document).ready(function () {
             movieRow.append(movieCol.append(movieCard));
             movieCard.append(movieCardHeader.append(movieName));
             movieCard.append(movieCardBody);
-            movieCardBody.append(movieRating, movieCast, moviePlot, movieTrailer, linkSeparator, movieStreams);
+            movieCardBody.append(movieRating, movieCast, moviePlot, movieTrailer, linkSeparator, movieStreams, moviePoster);
+
+            $(".movie-poster").hover(function() {
+
+              $(this).css({"display":"none","transition-timing-function":"ease-in-out"});
+
+            }, function() {
+
+              $(this).css({"display":"block","transition-timing-function":"ease-in-out"});
+            
+
+            })
 
           })
         }

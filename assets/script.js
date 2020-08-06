@@ -45,11 +45,14 @@ $(document).ready(function () {
       var restaurantNameCard = $("<h4>").html(restaurantName).attr("class", "rest-title");
 
       //Restaurant Photo
-      var restaurantPhotoCard = $("<img>").attr("src", "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + placesData2.result.photos[0].photo_reference + "&sensor=false&maxheight=200&maxwidth=200" + authKey)
+      var restaurantPhotoCard = $("<img>").attr("src", "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + placesData2.result.photos[0].photo_reference + "&sensor=false&maxheight=200&maxwidth=200" + authKey).attr("class", "img-thumbnail");
 
       //Restaurant Address
       var restaurantAddress = placesData2.result.formatted_address;
       var restaurantAddressCard = $("<p>").html("Address: " + restaurantAddress).attr("class", "p-address");
+      
+      //Restaurant GoogleMaps Link      
+      var restaurantMap = $("<a>").html("Google Maps").attr("href", placesData2.result.url).attr("target", "_blank");
 
       //Restaurant Number
       var restaurantPhone = placesData2.result.formatted_phone_number;
@@ -59,23 +62,24 @@ $(document).ready(function () {
       var restaurantRating = placesData2.result.rating
       var restaurantRatingCard = $("<p>").html("Rating: " + restaurantRating + "/5").attr("class", "p-address");
 
-      //Restaurant GoogleMaps Link      
-      var restaurantMap = $("<a>").text("Google Maps").attr("href", placesData2.result.url).attr("target", "_blank");
-
       //Restaurant Website Link
-      var restaurantURL = $("<a>").text("Restaurant Website").attr("href", placesData2.result.website).attr("target", "_blank");
+      var restaurantURL = $("<a>").html("Restaurant Website").attr("href", placesData2.result.website).attr("target", "_blank");
 
       //Restaurant Cards
       var restaurantRow = $(".restaurant-row");
       var restaurantCol = $("<div>").attr("class", "col-lg-4 restaurant-col");
-      var restaurantCard = $("<div>").attr("class", "card restaurant-card").attr("style", "height: 500px;");
+      var restaurantCard = $("<div>").attr("class", "card restaurant-card").attr("style", "height: 50vh;");
       var restaurantCardHeader = $("<div>").attr("class", "card-header restaurant-card-header");
       var restaurantCardBody = $("<div>").attr("class", "card-body restaurant-card-body");
+      var restaurantCardLeft = $("<div>").attr("class", "left");
+      var restaurantCardRight = $("<div>").attr("class", "right");
 
       restaurantRow.append(restaurantCol.append(restaurantCard));
       restaurantCard.append(restaurantCardHeader.append(restaurantNameCard));
       restaurantCard.append(restaurantCardBody);
-      restaurantCardBody.append(restaurantPhotoCard, restaurantAddressCard, restaurantMap, restaurantPhoneCard, restaurantRatingCard, restaurantURL);
+      restaurantCardBody.append(restaurantCardLeft, restaurantCardRight);
+      restaurantCardLeft.append(restaurantPhotoCard);
+      restaurantCardRight.append(restaurantAddressCard, restaurantMap, restaurantPhoneCard, restaurantRatingCard, restaurantURL);
 
     });
   };
@@ -204,7 +208,7 @@ $(document).ready(function () {
     });
   });
 
-
+});
 
 
 

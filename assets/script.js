@@ -2,31 +2,52 @@
 $(document).ready(function () {
 
   //RESTAURANT GENERATOR
-
-  //SETUP Variables
   //================================================
+  //SETUP Variables
   var authKey = "&key=AIzaSyAApQZVRRj-sNhF5LM9eZVQM8qOii5Orq4";
 
   // URL Base
   var queryURLBase = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=";
 
-  //Functions
-  //================================================
+  var restIDS = [];
 
+  //Functions
   function runQuery(rQueryURL) {
 
-    //AJAX Function
+    //AJAX Function to get restaurants
     $.ajax({
       url: rQueryURL,
       method: "GET"
     })
       .then(function (placesData) {
+        console.log(placesData);
+        console.log(rQueryURL);
+        for (var i = 0; i < placesData.results.length; i++) {
+          if (placesData.results[i].business_status === "OPERATIONAL") {
+            restIDS.push(placesData.results[i].place_id);
+          }
+        }
 
-        var j = Math.floor(Math.random() * (placesData.results.length - 4));
+        var restNextPageURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken=" + placesData.next_page_token + authKey;
+        console.log(restNextPageURL);
+
+        $.ajax({
+          url: restNextPageURL,
+          method: "GET"
+        }).then(function(placesDataNextPage) {
+          console.log(placesDataNextPage);
+          for (var i = 0; i < placesDataNextPage.results.length; i++) {
+            if (placesDataNextPage.results[i].business_status === "OPERATIONAL") {
+              restIDS.push(placesDataNextPage.results[i].place_id);
+            }
+          }
+        })
+       
+        var j = Math.floor(Math.random() * (restIDS.length - 4));
 
         for (var i = j; i < (j + 3); i++) {
           $(".restaurant-col").remove();
-          getRestaurantDetails(placesData.results[i].place_id);
+          getRestaurantDetails(restIDS[i]);
         }
       })
   };
@@ -91,9 +112,7 @@ $(document).ready(function () {
     });
   };
 
-  //MAIN PROCESS
-  //================================================
-
+  //ON CLICK, GRAB INPUTS
   $('#rest-btn').on('click', function () {
 
     //Get Cuisine
@@ -129,6 +148,7 @@ $(document).ready(function () {
 
 
   //MOVIE GENERATOR
+  //================================================
   $("#movie-btn").on("click", function findMovie() {
 
 

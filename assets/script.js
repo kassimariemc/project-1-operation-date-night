@@ -244,16 +244,12 @@ $(document).ready(function () {
             }
 
             // Generating card elements for each movie chosen.
+            
             var movieRow = $(".movie-row");
             var movieCol = $("<div>").attr("class", "col-lg-4 movie-col");
-            var movieCard = $("<div>").attr("class", "card movie-card");
-            var movieCardHeader = $("<div>").attr("class", "card-header movie-card-header");
-            var movieCardBody = $("<div>").attr("class", "card-body movie-card-body")
-
-            // We're going to make something like line 183 work for the above.  Thinking maybe just set the poster as the body and then on hover show the other p-tags??  Currently I can't format the image without also formatting the text, so it's not readable.
-
-            // .css({"background-image":"url(" + movie.Poster + ")","background-size":"100%"});
-
+            var movieCard = $("<div>").attr("class", "card movie-card ");
+            var movieCardBody = $("<div>").attr("class", "card-body movie-card-body");        
+            var moviePoster = $("<img>").attr({"src":movie.Poster,"class":"movie-poster"});
             var movieName = $("<h4>").html(movie.Title).attr("class", "movie-title");
             var movieRating = $("<p>").html("Rated " + movie.Rated).attr("class", "p-rated");
             var movieCast = $("<p>").html("Starring | " + movie.Actors).attr("class", "p-cast");
@@ -262,17 +258,15 @@ $(document).ready(function () {
             var linkSeparator = $("<div>");
             var movieStreams = $("<a>").attr("href", "https://www.justwatch.com/us/search?q=" + movie.Title).attr("target", "_blank").html("Where to find it");
 
-            movieRow.append(movieCol.append(movieCard));
-            movieCard.append(movieCardHeader.append(movieName));
-            movieCard.append(movieCardBody);
-            movieCardBody.append(movieRating, movieCast, moviePlot, movieTrailer, linkSeparator, movieStreams);
+            movieRow.append(movieCol.append(movieCard));       
+            movieCard.append(movieCardBody, moviePoster);
+            movieCardBody.append(movieName, movieRating, movieCast, moviePlot, movieTrailer, linkSeparator, movieStreams);
 
           })
         }
       });
     }
-  });
-    
+  });  
 });
 
 

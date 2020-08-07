@@ -21,20 +21,26 @@ $(document).ready(function () {
       method: "GET"
     })
       .then(function (placesData) {
-
+       
         var j = Math.floor(Math.random() * (placesData.results.length - 4));
 
-        for (var i = j; i < (j + 3); i++) {
-          $(".restaurant-col").remove();
-          getRestaurantDetails(placesData.results[i].place_id);
-        }
+        if (placesData.status == "ZERO_RESULTS"){
+          $(".restaurant-error-box").css("display", "block").text("Oops!  Please check above fields for spelling errors.")
+
+        } else {
+        
+          for (var i = j; i < (j + 3); i++) {
+            $(".restaurant-col").remove();
+            getRestaurantDetails(placesData.results[i].place_id);
+          }
+        };
       })
   };
 
   //Function to Call for restaurant Details
   function getRestaurantDetails(restaurant) {
     $.ajax({
-      url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + restaurant + "&fields=name,photo,formatted_address,url,website,rating,formatted_phone_number" + authKey,
+      url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + restaurant + "&fields=name,photo,formatted_address,url,website,rating,formatted_phone_number,opening_hours" + authKey,
       method: "GET"
     }).then(function (placesData2) {
       console.log(placesData2);
@@ -44,37 +50,49 @@ $(document).ready(function () {
       var restaurantNameCard = $("<h4>").html(restaurantName).attr("class", "rest-title");
 
       //Restaurant Photo
-      var restaurantPhotoCard = $("<img>").attr("src", "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + placesData2.result.photos[0].photo_reference + "&sensor=false&maxheight=200&maxwidth=200" + authKey)
+      var restaurantPhoto = $("<img>").attr("src", "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + placesData2.result.photos[0].photo_reference + "&sensor=false&maxheight=200&maxwidth=200" + authKey).attr("class", "img-thumbnail pull-left");
 
       //Restaurant Address
       var restaurantAddress = placesData2.result.formatted_address;
-      var restaurantAddressCard = $("<p>").html("Address: " + restaurantAddress).attr("class", "p-address");
+      var restaurantAddressCard = $("<p>").html(restaurantAddress).attr("class", "p-address");
+      
+      //Restaurant GoogleMaps Link      
+      var restaurantMap = $("<a>").html("Google Maps").attr("href", placesData2.result.url).attr("target", "_blank").attr("class", "p-maps");
 
       //Restaurant Number
       var restaurantPhone = placesData2.result.formatted_phone_number;
-      var restaurantPhoneCard = $("<p>").html("Phone: " + restaurantPhone).attr("class", "p-phone");
+      var restaurantPhoneCard = $("<p>").html(restaurantPhone).attr("class", "p-phone");
 
       //Restaurant Rating
       var restaurantRating = placesData2.result.rating
-      var restaurantRatingCard = $("<p>").html("Rating: " + restaurantRating + "/5").attr("class", "p-address");
-
-      //Restaurant GoogleMaps Link      
-      var restaurantMap = $("<a>").text("Google Maps").attr("href", placesData2.result.url).attr("target", "_blank");
+      var restaurantRatingCard = $("<p>").html("Rating: " + restaurantRating + "/5").attr("class", "p-rating");
 
       //Restaurant Website Link
-      var restaurantURL = $("<a>").text("Restaurant Website").attr("href", placesData2.result.website).attr("target", "_blank");
+      var restaurantURL = $("<a>").html("Restaurant Website").attr("href", placesData2.result.website).attr("target", "_blank").attr("class", "p-web");
 
       //Restaurant Cards
       var restaurantRow = $(".restaurant-row");
       var restaurantCol = $("<div>").attr("class", "col-lg-4 restaurant-col");
-      var restaurantCard = $("<div>").attr("class", "card restaurant-card").attr("style", "height: 500px;");
+      var restaurantCard = $("<div>").attr("class", "card restaurant-card");
       var restaurantCardHeader = $("<div>").attr("class", "card-header restaurant-card-header");
-      var restaurantCardBody = $("<div>").attr("class", "card-body restaurant-card-body");
+      var restaurantCardBody = $("<div>").attr("class", "card-body restaurant-card-body overflow-auto");
 
       restaurantRow.append(restaurantCol.append(restaurantCard));
       restaurantCard.append(restaurantCardHeader.append(restaurantNameCard));
       restaurantCard.append(restaurantCardBody);
-      restaurantCardBody.append(restaurantPhotoCard, restaurantAddressCard, restaurantMap, restaurantPhoneCard, restaurantRatingCard, restaurantURL);
+      var restaurantRow1 = $("<div>").attr("class", "row");
+      restaurantCardBody.append(restaurantRow1);
+      var restaurantPhotoEl = $("<div>").attr("class", "col-md-6");
+      var restaurantHoursEl = $("<div>").attr("class", "col-md-6");
+      restaurantRow1.append(restaurantPhotoEl, restaurantHoursEl);
+      restaurantPhotoEl.append(restaurantPhoto);
+      //Restaurant Hours
+      var restaurantHours = placesData2.result.opening_hours.weekday_text;
+      for (var i = 0; i < restaurantHours.length; i++) {
+        var restaurantHoursCard = $("<p>").html(restaurantHours[i]).attr("class", "rest-hours");
+        restaurantHoursEl.append(restaurantHoursCard);
+      }
+      restaurantCardBody.append(restaurantPhoneCard, restaurantAddressCard, restaurantMap, restaurantRatingCard, restaurantURL);
 
     });
   };
@@ -86,12 +104,14 @@ $(document).ready(function () {
 
     //Get Cuisine
     var cuisine = $('#rest-cuisine').val();
-
-    //Add Cuisine
     if (cuisine == "any") {
+      
       var restURL = queryURLBase + "restaurants+in+";
-    } else {
+    
+    }else {
+     
       var restURL = queryURLBase + cuisine + "+restaurants+in+";
+    
     };
 
     //Get City
@@ -99,7 +119,7 @@ $(document).ready(function () {
     //Add in the City
     var restURL = restURL + userCity;
     //Get State
-    var userState = $('#rest-state').val();
+    var userState = $('#rest-state').val().trim();
     //Add in the State
     var restURL = restURL + "+" + userState;
     //Get Radius
@@ -109,8 +129,38 @@ $(document).ready(function () {
     //Add API Key
     var restURL = restURL + authKey;
     console.log(restURL);
+
+    var states = ["al", "ak", "az", "ar", "ca", "co", "ct", "de", "dc", "fl", "ga", "hi", "id", "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "my", "nc", "nd", "oh", "ok", "or", "pa", "ri",  "sc", "sd", "tn", "tx", "ut", "vt", "va", "wa", "wv", "wi", "wy"];
+    ///Conditions for input error
+    if (userCity == "") {
+      
+      $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a city.")
+
+    } else if (userState == ""){
+
+      $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a state.")
+
+    } 
+     else if (states.indexOf(userState) == -1) {
+
+      $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter the abbreviation for your state. Example: North Carolina - NC")
+
+    } 
+
+    else if (cuisine == "choose"){
+      
+      $(".restaurant-error-box").css("display", "block").text("Oops!  Please choose a cuisine.")
+    
+    } else {
+      
+      $(".movie-error-box").css("display", "none")
+      runQuery(restURL);
+    };
+
     //Send the AJAX Call the newly assembled URL
-    runQuery(restURL);
+    
+
+    
   });
 
 

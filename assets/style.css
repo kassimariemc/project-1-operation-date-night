@@ -4,7 +4,7 @@ body {
 }
 
 h4 {
-  font-size:19px;
+  font-size:22px;
   font-weight:600;
 }
 
@@ -116,6 +116,7 @@ header .jumbotron {
 
   margin-top:15px;
   margin-bottom:15px;
+  
 }
 
 .movie-row { 
@@ -138,6 +139,20 @@ header .jumbotron {
 
 .card-body {
   height:357px;
+  z-index:2;
+ 
+}
+
+.movie-card-body {
+  height:450px;
+  opacity:0;
+  background-color:rgb(0,48,73);
+  transition: opacity 0.25s ease;
+}
+
+.movie-card-body:hover{
+
+  opacity:0.9;
 }
 
 .movie-poster {
@@ -146,9 +161,13 @@ header .jumbotron {
   left:0%;
   width:100%;
   height:100%;
-
+  transition: opacity 0.25s ease;
 }
 
+.movie-poster:hover {
+
+  opacity:0.1;
+}
 
 .p-cast {
   font-size:14px;
@@ -157,9 +176,6 @@ header .jumbotron {
 .p-plot {
   font-size:14px;
 }
-
-
-
 
 /* Footer */
 

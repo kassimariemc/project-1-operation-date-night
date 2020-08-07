@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 
     //AJAX Function to get restaurants
-=======
+
     //AJAX Function
 
     $.ajax({
@@ -44,7 +44,7 @@ $(document).ready(function () {
           $(".restaurant-col").remove();
           getRestaurantDetails(restIDS[i]);
         }
-=======
+
         if (placesData.status == "ZERO_RESULTS"){
           $(".restaurant-error-box").css("display", "block").text("Oops!  Please check above fields for spelling errors.")
 

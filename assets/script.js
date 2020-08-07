@@ -14,6 +14,15 @@ $(document).ready(function () {
   //Functions
   function runQuery(rQueryURL) {
 
+    var loadingEl = $("<div>").attr("class", "loading-dots");
+    var loadingH1 = $("<h1>").text("Loading");
+    var loadingDot1 = $("<h1>").text(".").attr("class", "dot one");
+    var loadingDot2 = $("<h1>").text(".").attr("class", "dot two");
+    var loadingDot3 = $("<h1>").text(".").attr("class", "dot three");
+    $(".restaurant-row").append(loadingEl);
+    loadingEl.append(loadingH1, loadingDot1, loadingDot2, loadingDot3);
+
+
     //AJAX Function to get restaurants
     $.ajax({
       url: rQueryURL,
@@ -44,6 +53,8 @@ $(document).ready(function () {
         })
        
         var j = Math.floor(Math.random() * (restIDS.length - 4));
+
+        $(".restaurant-row").empty();
 
         for (var i = j; i < (j + 3); i++) {
           $(".restaurant-col").remove();

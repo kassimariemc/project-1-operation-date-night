@@ -15,7 +15,20 @@ $(document).ready(function () {
 
   function runQuery(rQueryURL) {
 
+
+    var loadingEl = $("<div>").attr("class", "loading-dots");
+    var loadingH1 = $("<h1>").text("Loading");
+    var loadingDot1 = $("<h1>").text(".").attr("class", "dot one");
+    var loadingDot2 = $("<h1>").text(".").attr("class", "dot two");
+    var loadingDot3 = $("<h1>").text(".").attr("class", "dot three");
+    $(".restaurant-row").append(loadingEl);
+    loadingEl.append(loadingH1, loadingDot1, loadingDot2, loadingDot3);
+
+
+    //AJAX Function to get restaurants
+=======
     //AJAX Function
+
     $.ajax({
       url: rQueryURL,
       method: "GET"
@@ -24,6 +37,14 @@ $(document).ready(function () {
        
         var j = Math.floor(Math.random() * (placesData.results.length - 4));
 
+
+        $(".restaurant-row").empty();
+
+        for (var i = j; i < (j + 3); i++) {
+          $(".restaurant-col").remove();
+          getRestaurantDetails(restIDS[i]);
+        }
+=======
         if (placesData.status == "ZERO_RESULTS"){
           $(".restaurant-error-box").css("display", "block").text("Oops!  Please check above fields for spelling errors.")
 
@@ -34,6 +55,7 @@ $(document).ready(function () {
             getRestaurantDetails(placesData.results[i].place_id);
           }
         };
+
       })
   };
 

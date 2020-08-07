@@ -16,13 +16,13 @@ $(document).ready(function () {
   //Functions
   function runQuery(rQueryURL) {
 
-
+    // Loading Animation
     var loadingEl = $("<div>").attr("class", "loading-dots");
     var loadingH1 = $("<h1>").text("Loading");
     var loadingDot1 = $("<h1>").text(".").attr("class", "dot one");
     var loadingDot2 = $("<h1>").text(".").attr("class", "dot two");
     var loadingDot3 = $("<h1>").text(".").attr("class", "dot three");
-    $(".restaurant-row").append(loadingEl);
+    $(".restaurant-row").prepend(loadingEl);
     loadingEl.append(loadingH1, loadingDot1, loadingDot2, loadingDot3);
 
 
@@ -47,7 +47,7 @@ $(document).ready(function () {
           var restNextPageURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken=" + placesData.next_page_token + authKey;
           console.log(restNextPageURL);
 
-          $.ajax({
+          setTimeout(() => { $.ajax({
             url: restNextPageURL,
             method: "GET"
           }).then(function (placesDataNextPage) {
@@ -58,14 +58,17 @@ $(document).ready(function () {
               }
             }
           })
-
-          var j = Math.floor(Math.random() * (restIDS.length - 4));
+          // Empty loading animation
           $(".restaurant-row").empty();
-          for (var i = j; i < (j + 3); i++) {
-            $(".restaurant-col").remove();
-            getRestaurantDetails(restIDS[i]);
-          };
 
+          // Randomize generator
+          var j = Math.floor(Math.random() * (restIDS.length - 4));
+          for (var i = j; i < (j + 3); i++) {
+            // Empty previous generated restaurants
+            $(".restaurant-col").remove();
+    
+            getRestaurantDetails(restIDS[i]);
+          }; }, 1500);
         };
       });
   };
@@ -76,7 +79,6 @@ $(document).ready(function () {
       url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + restaurant + "&fields=name,photo,formatted_address,url,website,rating,formatted_phone_number,opening_hours" + authKey,
       method: "GET"
     }).then(function (placesData2) {
-      console.log(placesData2);
 
       //Restaurant Name
       var restaurantName = placesData2.result.name;
@@ -136,13 +138,9 @@ $(document).ready(function () {
     //Get Cuisine
     var cuisine = $('#rest-cuisine').val();
     if (cuisine == "any") {
-
       var restURL = queryURLBase + "restaurants+in+";
-
     } else {
-
       var restURL = queryURLBase + cuisine + "+restaurants+in+";
-
     };
 
     //Get City
@@ -164,28 +162,18 @@ $(document).ready(function () {
     var states = ["al", "ak", "az", "ar", "ca", "co", "ct", "de", "dc", "fl", "ga", "hi", "id", "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "my", "nc", "nd", "oh", "ok", "or", "pa", "ri", "sc", "sd", "tn", "tx", "ut", "vt", "va", "wa", "wv", "wi", "wy"];
     ///Conditions for input error
     if (userCity == "") {
-
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a city.")
-
     } else if (userState == "") {
 
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a state.")
-
     }
     else if (states.indexOf(userState.toLowerCase()) == -1) {
-
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter the abbreviation for your state. Example: North Carolina - NC")
-
     }
-
     else if (cuisine == "choose") {
-
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please choose a cuisine.")
-
     } else {
-
       $(".movie-error-box").css("display", "none")
-
       //Send the AJAX Call the newly assembled URL
       runQuery(restURL);
     };
@@ -203,24 +191,14 @@ $(document).ready(function () {
     var genre = $("#genre-input").val();
 
     if (genre == "Choose...") {
-
       $(".movie-error-box").css("display", "block").text("Oops!  Please choose a genre.")
-
     } else if (startYear > 2020 || startYear < 1900 || endYear < 1900 || endYear > 2020) {
-
       $(".movie-error-box").css("display", "block").text("Oops!  Please choose a start and end year between 1900 and 2020.")
-
     } else if (startYear > endYear) {
-
       $(".movie-error-box").css("display", "block").text("Oops!  Please choose a starting year earlier than or equal to the ending year.")
-
     } else if (parseInt(startYear) != startYear || parseInt(endYear) != endYear) {
-
       $(".movie-error-box").css("display", "block").text("Oops!  Your start and end year must be a four-digit number.")
-
-
     } else {
-
       $(".movie-error-box").css("display", "none");
 
       console.log("This is the first year value" + startYear);
@@ -239,7 +217,6 @@ $(document).ready(function () {
         var j = Math.floor(Math.random() * (response.results.length - 4));
 
         for (var i = j; i < (j + 3); i++) {
-
 
           var tmdbFullYear = response.results[i].release_date;
           var tmdbYearOnly = tmdbFullYear.substring(0, 4);
@@ -261,13 +238,10 @@ $(document).ready(function () {
             method: "GET",
           }).then(function (movie) {
 
-
             // Sometimes the movie in tmdb won't be in the omdb database, or its title will be in a format that omdb won't recognize and therefore will return the movie as undefined.  This conditional restarts the function should that happen so that three movies fully populate.  
 
             if (movie.Response === "False") {
-
               findMovie();
-
             }
 
             // Generating card elements for each movie chosen.

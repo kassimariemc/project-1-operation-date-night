@@ -2,53 +2,38 @@
 $(document).ready(function () {
 
   //RESTAURANT GENERATOR
-  //================================================
+
   //SETUP Variables
+  //================================================
   var authKey = "&key=AIzaSyAApQZVRRj-sNhF5LM9eZVQM8qOii5Orq4";
 
   // URL Base
   var queryURLBase = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=";
 
-  var restIDS = [];
-
   //Functions
+  //================================================
+
   function runQuery(rQueryURL) {
 
-    //AJAX Function to get restaurants
+    //AJAX Function
     $.ajax({
       url: rQueryURL,
       method: "GET"
     })
       .then(function (placesData) {
-        console.log(placesData);
-        console.log(rQueryURL);
-        for (var i = 0; i < placesData.results.length; i++) {
-          if (placesData.results[i].business_status === "OPERATIONAL") {
-            restIDS.push(placesData.results[i].place_id);
-          }
-        }
-
-        var restNextPageURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken=" + placesData.next_page_token + authKey;
-        console.log(restNextPageURL);
-
-        $.ajax({
-          url: restNextPageURL,
-          method: "GET"
-        }).then(function(placesDataNextPage) {
-          console.log(placesDataNextPage);
-          for (var i = 0; i < placesDataNextPage.results.length; i++) {
-            if (placesDataNextPage.results[i].business_status === "OPERATIONAL") {
-              restIDS.push(placesDataNextPage.results[i].place_id);
-            }
-          }
-        })
        
-        var j = Math.floor(Math.random() * (restIDS.length - 4));
+        var j = Math.floor(Math.random() * (placesData.results.length - 4));
 
-        for (var i = j; i < (j + 3); i++) {
-          $(".restaurant-col").remove();
-          getRestaurantDetails(restIDS[i]);
-        }
+        if (placesData.status == "ZERO_RESULTS"){
+          $(".restaurant-error-box").css("display", "block").text("Oops!  Please check above fields for spelling errors.")
+
+        } else {
+        
+          for (var i = j; i < (j + 3); i++) {
+            $(".restaurant-col").remove();
+            getRestaurantDetails(placesData.results[i].place_id);
+          }
+        };
       })
   };
 
@@ -112,17 +97,21 @@ $(document).ready(function () {
     });
   };
 
-  //ON CLICK, GRAB INPUTS
+  //MAIN PROCESS
+  //================================================
+
   $('#rest-btn').on('click', function () {
 
     //Get Cuisine
     var cuisine = $('#rest-cuisine').val();
-
-    //Add Cuisine
     if (cuisine == "any") {
+      
       var restURL = queryURLBase + "restaurants+in+";
-    } else {
+    
+    }else {
+     
       var restURL = queryURLBase + cuisine + "+restaurants+in+";
+    
     };
 
     //Get City
@@ -130,7 +119,7 @@ $(document).ready(function () {
     //Add in the City
     var restURL = restURL + userCity;
     //Get State
-    var userState = $('#rest-state').val();
+    var userState = $('#rest-state').val().trim();
     //Add in the State
     var restURL = restURL + "+" + userState;
     //Get Radius
@@ -140,15 +129,44 @@ $(document).ready(function () {
     //Add API Key
     var restURL = restURL + authKey;
     console.log(restURL);
+
+    var states = ["al", "ak", "az", "ar", "ca", "co", "ct", "de", "dc", "fl", "ga", "hi", "id", "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "my", "nc", "nd", "oh", "ok", "or", "pa", "ri",  "sc", "sd", "tn", "tx", "ut", "vt", "va", "wa", "wv", "wi", "wy"];
+    ///Conditions for input error
+    if (userCity == "") {
+      
+      $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a city.")
+
+    } else if (userState == ""){
+
+      $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a state.")
+
+    } 
+     else if (states.indexOf(userState) == -1) {
+
+      $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter the abbreviation for your state. Example: North Carolina - NC")
+
+    } 
+
+    else if (cuisine == "choose"){
+      
+      $(".restaurant-error-box").css("display", "block").text("Oops!  Please choose a cuisine.")
+    
+    } else {
+      
+      $(".movie-error-box").css("display", "none")
+      runQuery(restURL);
+    };
+
     //Send the AJAX Call the newly assembled URL
-    runQuery(restURL);
+    
+
+    
   });
 
 
 
 
   //MOVIE GENERATOR
-  //================================================
   $("#movie-btn").on("click", function findMovie() {
 
 

@@ -145,6 +145,24 @@ header .jumbotron {
   
 }
 
+.restaurant-error-box {
+
+  display:none;
+  background-color:#FCBF49;
+  color:#D62828;
+  border: 1px solid #D62828;
+  border-radius:5px;
+  width:100%;
+  margin-top:41px;
+  
+}
+
+.restaurant-error-text {
+
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
 .movie-error-box {
 
   display:none;

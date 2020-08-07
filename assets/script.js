@@ -130,6 +130,7 @@ $(document).ready(function () {
     var restURL = restURL + authKey;
     console.log(restURL);
 
+    var states = ["al", "ak", "az", "ar", "ca", "co", "ct", "de", "dc", "fl", "ga", "hi", "id", "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "my", "nc", "nd", "oh", "ok", "or", "pa", "ri",  "sc", "sd", "tn", "tx", "ut", "vt", "va", "wa", "wv", "wi", "wy"];
     ///Conditions for input error
     if (userCity == "") {
       
@@ -140,11 +141,12 @@ $(document).ready(function () {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a state.")
 
     } 
-    //  else if (userState.toLowerCase() != "al" || "ak" || "az" || "ar" || "ca" || "co" || "ct" || "de" || "dc" || "fl" || "ga" || "hi" || "id" || "il" || "in" || "ia" || "ks" || "ky" || "la" || "me" || "md" || "ma" || "mi" || "mn" || "ms" || "mo" || "mt" || "ne" || "nv" || "nh" || "nj" || "nm" || "my" || "nc" || "nd" || "oh" || "ok" || "or" || "pa" || "ri" || "sc" || "sd" || "tn" || "tx" || "ut" || "vt" || "va" || "wa" || "wv" || "wi" || "wy") {
+     else if (states.indexOf(userState) == -1) {
 
-    //   $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter the abbreviation for your state. Example: North Carolina - NC")
+      $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter the abbreviation for your state. Example: North Carolina - NC")
 
-    // } 
+    } 
+
     else if (cuisine == "choose"){
       
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please choose a cuisine.")
@@ -152,11 +154,11 @@ $(document).ready(function () {
     } else {
       
       $(".movie-error-box").css("display", "none")
-    
+      runQuery(restURL);
     };
 
     //Send the AJAX Call the newly assembled URL
-    runQuery(restURL);
+    
 
     
   });

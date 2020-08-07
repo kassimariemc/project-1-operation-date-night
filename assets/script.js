@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 
     //AJAX Function to get restaurants
-=======
+
     //AJAX Function
 
     $.ajax({
@@ -44,7 +44,7 @@ $(document).ready(function () {
           $(".restaurant-col").remove();
           getRestaurantDetails(restIDS[i]);
         }
-=======
+
         if (placesData.status == "ZERO_RESULTS"){
           $(".restaurant-error-box").css("display", "block").text("Oops!  Please check above fields for spelling errors.")
 
@@ -163,7 +163,7 @@ $(document).ready(function () {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a state.")
 
     } 
-     else if (states.indexOf(userState) == -1) {
+     else if (states.indexOf(userState.toLowerCase()) == -1) {
 
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter the abbreviation for your state. Example: North Carolina - NC")
 
@@ -176,16 +176,12 @@ $(document).ready(function () {
     } else {
       
       $(".movie-error-box").css("display", "none")
+
+      //Send the AJAX Call the newly assembled URL
       runQuery(restURL);
     };
-
-    //Send the AJAX Call the newly assembled URL
-    
-
     
   });
-
-
 
 
   //MOVIE GENERATOR

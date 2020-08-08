@@ -166,7 +166,7 @@ $(document).ready(function () {
     //Get Radius
     var radius = $('#rest-radius').val() * 1609;
     //Add in the radius
-    var restURL = restURL + "&radius=" + radius
+    var restURL = restURL + "&radius=" + radius;
     //Add API Key
     var restURL = restURL + authKey;
 
@@ -185,9 +185,13 @@ $(document).ready(function () {
      
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please choose a cuisine.")
     } else {
+de-bugging
+      $(".restaurant-error-box").css("display", "none")
+
       
       $(".movie-error-box").css("display", "none")
       
+ master
       //Send the AJAX Call the newly assembled URL
       runQuery(restURL);
     };
@@ -210,7 +214,6 @@ $(document).ready(function () {
 
   // ______________________________________________________________
   // Testing validity of user entries:
-
 
     // Ensures genre is selected from the drop-down
   if (genre == "Choose...") {

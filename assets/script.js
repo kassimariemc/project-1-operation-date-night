@@ -126,10 +126,10 @@ $(document).ready(function () {
       restaurantRow.append(restaurantCol.append(restaurantCard));
       restaurantCard.append(restaurantCardHeader.append(restaurantNameCard));
       restaurantCard.append(restaurantCardBody);
-      var restaurantRow1 = $("<div>").attr("class", "row");
+      var restaurantRow1 = $("<div>").attr("class", "row justify-content-between");
       restaurantCardBody.append(restaurantRow1);
-      var restaurantPhotoEl = $("<div>").addClass("class", "col-sm-12 col-md-6 col-lg-12");
-      var restaurantHoursEl = $("<div>").addClass("class", "col-sm-12 col-md-6 col-lg-12");
+      var restaurantPhotoEl = $("<div>").addClass("class", "col-sm-5 offset-sm-2 col-md-6 offset-md-0");
+      var restaurantHoursEl = $("<div>").addClass("class", "col-sm-5 offset-sm-2 col-md-6 offset-md-0");
       restaurantRow1.append(restaurantPhotoEl, restaurantHoursEl);
       restaurantPhotoEl.append(restaurantPhoto);
       //Restaurant Hours
@@ -145,6 +145,7 @@ $(document).ready(function () {
     });
   };
 
+  //col-sm-12 col-md-6 col-lg-12
 
   // ______________________________________________________________
   // Main Function when the "Get Restaurant" button is clicked

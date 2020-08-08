@@ -137,6 +137,8 @@ $(document).ready(function () {
       }
       restaurantCardBody.append(restaurantPhoneCard, restaurantAddressCard, restaurantMap, restaurantRatingCard, restaurantURL);
 
+      var scrollBtnR = $(".scroll-btnR")
+      $(scrollBtnR).removeClass("hidden");
     });
   };
 
@@ -175,20 +177,26 @@ $(document).ready(function () {
     ///Conditions for input error
     if (userCity == "") {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a city.")
-    } 
-    else if (userState == "") {
+    } else if (userState == "") {
+
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a state.")
-    } 
-    else if (states.indexOf(userState.toLowerCase()) == -1) {
+    } else if (states.indexOf(userState.toLowerCase()) == -1) {
+     
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter the abbreviation for your state. Example: North Carolina - NC")
-    } 
-    else if (cuisine == "choose") {
+    } else if (cuisine == "choose") {
+     
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please choose a cuisine.")
-    } 
-    else {
+    } else {
+
       $(".restaurant-error-box").css("display", "none")
+
+      
+      $(".movie-error-box").css("display", "none")
+      
+
       //Send the AJAX Call the newly assembled URL
       runQuery(restURL);
+  
     };
   });
 

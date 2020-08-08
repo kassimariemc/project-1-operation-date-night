@@ -47,6 +47,15 @@ header .jumbotron {
   outline: none !important;
   border: none !important;
 }
+.scroll-btnR:focus {
+  outline: none !important;
+  border: none !important;
+}
+
+.hidden {
+  visibility: hidden;
+  width: 3%;
+}
 
 /* Both Generators */
 .restaurant-inputs, .movie-inputs {
@@ -123,6 +132,7 @@ header .jumbotron {
   margin-bottom: 0;
   text-align: right;
 }
+
 
 /* Movie Generator */
 .movie {

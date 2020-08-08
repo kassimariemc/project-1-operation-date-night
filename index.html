@@ -11,7 +11,7 @@
   
     <link rel="stylesheet" href="assets/style.css" />
 
-    <title>COVID Date Night</title>
+    <title>Date Night at Home</title>
   </head>
 
   <body>
@@ -45,13 +45,14 @@
             </div>
           </div>
           <div class="text-center">
-            <button type="button" class="btn scroll-btn" id="scroll-btn" disabled><img src="https://cloudcar.com/wp-content/uploads/2018/06/gif-bounce-arrow.gif" width="60%"/></button>
+            <a href="#restaurant">
+            <button type="button" class="btn scroll-btn" enabled><img src="https://cloudcar.com/wp-content/uploads/2018/06/gif-bounce-arrow.gif" width="60%"/></button></a>
           </div>
         </div>
       </div>
 
       <!-- RESTAURANT GENERATOR -->
-      <div class="jumbotron jumbotron-fluid restaurant">
+      <div class="jumbotron jumbotron-fluid restaurant" id="restaurant">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-1"></div>
@@ -129,10 +130,12 @@
             </div>
           </div>
         </div>
+        <a href="#movie">
+          <button type="button" class="btn scroll-btnR hidden" id="scroll-btn" enabled><img src="https://cloudcar.com/wp-content/uploads/2018/06/gif-bounce-arrow.gif" width="60%"/></button></a>
       </div>
 
       <!-- MOVIE GENERATOR -->
-      <div class="jumbotron jumbotron-fluid movie">
+      <div class="jumbotron jumbotron-fluid movie" id="movie">
         <div class="container-fluid">
           <div class="row row-movie-search">
             <div class="col-md-1"></div>

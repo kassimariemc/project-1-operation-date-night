@@ -142,6 +142,8 @@ $(document).ready(function () {
       }
       restaurantCardBody.append(restaurantPhoneCard, restaurantAddressCard, restaurantMap, restaurantRatingCard, restaurantURL);
 
+      var scrollBtnR = $(".scroll-btnR")
+      $(scrollBtnR).removeClass("hidden");
     });
   };
 
@@ -192,6 +194,7 @@ $(document).ready(function () {
       $(".restaurant-error-box").css("display", "none")
       //Send the AJAX Call the newly assembled URL
       runQuery(restURL);
+  
     };
   });
 

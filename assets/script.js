@@ -35,6 +35,7 @@ $(document).ready(function () {
     })
       .then(function (placesData) {
 
+        console.log("Here are our places " + placesData);
         if (placesData.status == "ZERO_RESULTS") {
           $(".restaurant-error-box").css("display", "block").text("Oops!  Please check above fields for spelling errors.")
 
@@ -171,21 +172,19 @@ $(document).ready(function () {
     var restURL = restURL + authKey;
 
     var states = ["al", "ak", "az", "ar", "ca", "co", "ct", "de", "dc", "fl", "ga", "hi", "id", "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "my", "nc", "nd", "oh", "ok", "or", "pa", "ri", "sc", "sd", "tn", "tx", "ut", "vt", "va", "wa", "wv", "wi", "wy"];
-    
     ///Conditions for input error
     if (userCity == "") {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a city.")
-    } 
-    else if (userState == "") {
+    } else if (userState == "") {
+
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a state.")
-    } 
+    }
     else if (states.indexOf(userState.toLowerCase()) == -1) {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter the abbreviation for your state. Example: North Carolina - NC")
-    } 
+    }
     else if (cuisine == "choose") {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please choose a cuisine.")
-    } 
-    else {
+    } else {
       $(".restaurant-error-box").css("display", "none")
       //Send the AJAX Call the newly assembled URL
       runQuery(restURL);
@@ -197,6 +196,7 @@ $(document).ready(function () {
 
   $("#movie-btn").on("click", function findMovie() {
 
+    $("h5").remove();
   // ______________________________________________________________
   // Assigning variables to our user-selected search criteria:
 
@@ -296,14 +296,21 @@ $(document).ready(function () {
 
             // A link to the justwatch search results showing movie availability on various platforms
             var movieStreams = $("<a>").attr("href", "https://www.justwatch.com/us/search?q=" + movie.Title).attr("target", "_blank").html("Where to find it");
+            // Text informing the user to tap or hover
+            
+            
 
             // Appending each movie
             movieRow.append(movieCol.append(movieCard));       
             movieCard.append(movieCardBody, moviePoster);
             movieCardBody.append(movieName, movieRating, movieCast, moviePlot, movieTrailer, linkSeparator, movieStreams);
+            
 
           })
         }
+        var viewInstructions = $("<h5>").attr("class", "view-instructions").html("Tap or hover over your movie poster to see details!");
+        $(".col-movie-text").append(viewInstructions);
+
       });
     }
   });

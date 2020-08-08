@@ -8,6 +8,10 @@ h4 {
   font-weight:600;
 }
 
+h5 {
+  margin-top:14.5%;
+}
+
 
 /* Header */
 header .jumbotron {
@@ -64,6 +68,10 @@ header .jumbotron {
 
 .card-body {
   height: 45vh;
+}
+
+.form-control {
+  color:gray
 }
 
 /* Restaurant Generator */

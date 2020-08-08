@@ -35,7 +35,6 @@ $(document).ready(function () {
     })
       .then(function (placesData) {
 
-        console.log("Here are our places " + placesData);
         if (placesData.status == "ZERO_RESULTS") {
           $(".restaurant-error-box").css("display", "block").text("Oops!  Please check above fields for spelling errors.")
 
@@ -48,13 +47,11 @@ $(document).ready(function () {
           }
 
           var restNextPageURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken=" + placesData.next_page_token + authKey;
-          console.log(restNextPageURL);
 
           setTimeout(() => { $.ajax({
             url: restNextPageURL,
             method: "GET"
           }).then(function (placesDataNextPage) {
-            console.log(placesDataNextPage);
             for (var i = 0; i < placesDataNextPage.results.length; i++) {
               if (placesDataNextPage.results[i].business_status === "OPERATIONAL") {
                 restIDS.push(placesDataNextPage.results[i].place_id);

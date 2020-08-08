@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Fonts CDN -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Mulish&display=swap" rel="stylesheet">
-  
+    <!-- Local Stylesheet -->
     <link rel="stylesheet" href="assets/style.css" />
 
     <title>COVID Date Night</title>
@@ -25,6 +28,7 @@
     </header>
 
     <main>
+      
       <!-- INTRO -->
       <div class="jumbotron jumbotron-fluid intro">
         <div class="container-fluid">
@@ -59,6 +63,7 @@
               <h3 class="restaurant-header">Let's find some delivery or takeout for your special evening</h3>
             </div>
             <div class="col-md-6  restaurant-inputs">
+              
               <!-- City Input -->
               <div class="input-group input-group-lg mb-4">
                 <div class="input-group-prepend">
@@ -66,6 +71,7 @@
                 </div>
                 <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="New York City" id="rest-city">
               </div>
+              
               <!-- State Input -->
               <div class="input-group input-group-lg mb-4">
                 <div class="input-group-prepend">
@@ -73,6 +79,7 @@
                 </div>
                 <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="NY" id="rest-state">
               </div>
+              
               <!-- Radius Input -->
               <div class="input-group input-group-lg mb-4">
                 <div class="input-group-prepend">
@@ -80,13 +87,14 @@
                 </div>
                 <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="miles" id="rest-radius">
               </div>
+              
               <!-- Cuisine Input -->
               <div class="input-group input-group-lg mb-4">
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Cuisine</label>
                 </div>
                 <select class="custom-select" id="rest-cuisine">
-                  <option selected value="choose">Choose...</option>
+                  <option selected>Choose...</option>
                   <option value="any">Any</option>
                   <option value="american">American</option>
                   <option value="asian">Asian</option>
@@ -115,17 +123,13 @@
               </div>
             </div>
           </div>
+          
           <!-- Restaurant button -->
           <div class="text-center btn-row">
-            <div class="restaurant-error-box">
-              <p class="restaurant-error-text">test</p>
-            </div>
-            <br>
             <button type="button" class="btn btn-outline-light btn-lg rest-btn" id="rest-btn">Find My Dinner</button>
           </div>
           <div id="restaurants">
             <div class="row restaurant-row">
-              
             </div>
           </div>
         </div>
@@ -142,11 +146,9 @@
                 <p class="movie-error-text">test</p>
               </div>
             </div>
-            <div class="col-md-6 movie-inputs">
+            <div class="col-md-6 movie-inputs"> 
               
-              <!-- Decade Input -->
-              
-                
+              <!-- Movie Year Inputs -->
               <h3 class="date-selector">Show me movies</h3>
               <!-- From -->
               <div class="form-group row">
@@ -159,7 +161,6 @@
                   </div>
                 </div>
               </div>
-              <!-- <h3 class="date-selector">until</h3> -->
               <!-- To -->
               <div class="form-group row">
                 <div class="col-md-10">
@@ -173,9 +174,7 @@
               </div>
 
               <!-- Genre Input -->
-              
               <h3 class="genre-selector">that are about...</h3>
-
               <div class="form-group row">
                 <div class="col-md-10">
                   <div class="input-group input-group-lg">
@@ -208,28 +207,28 @@
               </div>
             </div>
           </div>
+          
           <!-- Movie button -->
           <div class="text-center btn-row">
             <button type="button" class="btn btn-outline-light btn-lg movie-btn" id="movie-btn">Find My Movie</button>
           </div>
           <div id="movies" class="container">
-            <div class="row movie-row">
-              
+            <div class="row movie-row">   
             </div>
           </div>
-
         </div>
       </div>
-
     </main>
 
     <footer class="footer nav sticky-bottom justify-content-center">
       Date Night at Home App v1.0
     </footer>
 
-
+    <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap CDN -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Local Script -->
     <script src="assets/script.js"></script>
   </body>
 </html>

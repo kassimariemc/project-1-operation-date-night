@@ -9,7 +9,6 @@ h4 {
 }
 
 
-
 /* Header */
 header .jumbotron {
   background-image: url(images/projector.jpg);
@@ -20,9 +19,7 @@ header .jumbotron {
 }
 
 .jumbotron {
-
-  margin-bottom:0px;
-  
+  margin-bottom:0px; 
 }
 
 .heading {
@@ -51,6 +48,7 @@ header .jumbotron {
 .restaurant-inputs, .movie-inputs {
   margin-top: 50px;
 }
+
 .restaurant-header, .movie-header {
   font-size: 48px;
   margin-top: 100px;
@@ -141,8 +139,7 @@ header .jumbotron {
 
 .restaurant-card {
   background-color: #FCBF49;
-  color: rgb(0, 48, 73);
-  
+  color: rgb(0, 48, 73);  
 }
 
 .restaurant-error-box {
@@ -171,15 +168,13 @@ header .jumbotron {
   border: 1px solid #D62828;
   border-radius:5px;
   width:100%;
-  margin-top:41px;
-  
+  margin-top:41px;  
 }
 
 .movie-error-text {
 
   margin-top:15px;
-  margin-bottom:15px;
-  
+  margin-bottom:15px;  
 }
 
 .movie-row { 
@@ -188,7 +183,7 @@ header .jumbotron {
 
 .movie-card {
   background-color: rgb(0, 48, 73);
-  color: #EAE2B7;
+  color: #EAE2B7; 
 }
 
 .movie-card-body a {
@@ -202,7 +197,6 @@ header .jumbotron {
 .card-body {
   height:357px;
   z-index:2;
- 
 }
 
 .movie-card-body {
@@ -213,7 +207,6 @@ header .jumbotron {
 }
 
 .movie-card-body:hover{
-
   opacity:0.9;
 }
 
@@ -227,7 +220,6 @@ header .jumbotron {
 }
 
 .movie-poster:hover {
-
   opacity:0.1;
 }
 

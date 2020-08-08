@@ -7,7 +7,7 @@ A simple app that helps you enjoy a night at home with dinner and a movie, so yo
 * responsive for all screen sizes
 * Bootstrap components
 * dynamically updated HTML and CSS powered by jQuery
-* [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction) + [The Open Movie Database](https://developers.themoviedb.org/3/getting-started/introduction))
+* [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction) + [The Open Movie Database](https://developers.themoviedb.org/3/getting-started/introduction)
 * [Google Places API](https://developers.google.com/places/web-service/overview)
 
 ## Deployment

@@ -13,7 +13,6 @@ $(document).ready(function () {
   // URL Base
   var queryURLBase = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=";
 
-  var restIDS = [];
   // ______________________________________________________________
   // Function to generate restaurants
   function runQuery(rQueryURL) {
@@ -34,7 +33,8 @@ $(document).ready(function () {
       method: "GET"
     })
       .then(function (placesData) {
-
+        var restIDS = [];
+        console.log(rQueryURL);
         if (placesData.status == "ZERO_RESULTS") {
           $(".restaurant-error-box").css("display", "block").text("Oops!  Please check above fields for spelling errors.")
 
@@ -64,7 +64,7 @@ $(document).ready(function () {
           $(".restaurant-row").empty();
 
           // Randomize generator
-          var j = Math.floor(Math.random() * (restIDS.length - 4));
+          var j = Math.floor(Math.random() * (restIDS.length - 3));
           for (var i = j; i < (j + 3); i++) {
             // Empty previous generated restaurants
             $(".restaurant-col").remove();
@@ -83,13 +83,13 @@ $(document).ready(function () {
       url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + restaurant + "&fields=name,photo,formatted_address,url,website,rating,formatted_phone_number,opening_hours" + authKey,
       method: "GET"
     }).then(function (placesData2) {
-
+      console.log(placesData2);
       //Restaurant Name & Element
       var restaurantName = placesData2.result.name;
       var restaurantNameCard = $("<h4>").html(restaurantName).attr("class", "rest-title");
 
       //Restaurant Photo & Element
-      var restaurantPhoto = $("<img>").attr("src", "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + placesData2.result.photos[0].photo_reference + "&sensor=false&maxheight=200&maxwidth=200" + authKey);
+      var restaurantPhoto = $("<img>").attr("src", "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + placesData2.result.photos[0].photo_reference + "&sensor=false&maxheight=200&maxwidth=200" + authKey).css("display", "block");
 
       //Restaurant Address & Element
       var restaurantAddress = placesData2.result.formatted_address;
@@ -125,8 +125,8 @@ $(document).ready(function () {
       restaurantCard.append(restaurantCardBody);
       var restaurantRow1 = $("<div>").attr("class", "row");
       restaurantCardBody.append(restaurantRow1);
-      var restaurantPhotoEl = $("<div>").attr("class", "col-md-6");
-      var restaurantHoursEl = $("<div>").attr("class", "col-md-6");
+      var restaurantPhotoEl = $("<div>").addClass("class", "col-sm-12 col-md-6 col-lg-12");
+      var restaurantHoursEl = $("<div>").addClass("class", "col-sm-12 col-md-6 col-lg-12");
       restaurantRow1.append(restaurantPhotoEl, restaurantHoursEl);
       restaurantPhotoEl.append(restaurantPhoto);
       //Restaurant Hours
@@ -201,9 +201,9 @@ $(document).ready(function () {
   // Assigning variables to our user-selected search criteria:
 
     // Earliest year to show
-    var startYear = $(".earliest-year-selector").val();
+    var startYear = $(".earliest-year-selector").val().trim();
     // Latest year to show
-    var endYear = $(".latest-year-selector").val();
+    var endYear = $(".latest-year-selector").val().trim();
     // User genre selection
     var genre = $("#genre-input").val();
 
@@ -236,7 +236,7 @@ $(document).ready(function () {
       }).then(function (response) {
 
         // Ensuring we do not always populate the top three results, allowing the user to search multiple times if the three titles that populate do not meet their needs
-        var j = Math.floor(Math.random() * (response.results.length - 4));
+        var j = Math.floor(Math.random() * (response.results.length - 3));
 
         for (var i = j; i < (j + 3); i++) {
           // Retrieving the release date of the movie (YYYY-MM-DD)

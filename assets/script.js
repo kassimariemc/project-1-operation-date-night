@@ -89,7 +89,7 @@ $(document).ready(function () {
       var restaurantNameCard = $("<h4>").html(restaurantName).attr("class", "rest-title");
 
       //Restaurant Photo & Element
-      var restaurantPhotoCard = $("<img>").attr("src", "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + placesData2.result.photos[0].photo_reference + "&sensor=false&maxheight=200&maxwidth=200" + authKey);
+      var restaurantPhoto = $("<img>").attr("src", "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + placesData2.result.photos[0].photo_reference + "&sensor=false&maxheight=200&maxwidth=200" + authKey);
 
       //Restaurant Address & Element
       var restaurantAddress = placesData2.result.formatted_address;

@@ -89,7 +89,7 @@ $(document).ready(function () {
       var restaurantNameCard = $("<h4>").html(restaurantName).attr("class", "rest-title");
 
       //Restaurant Photo & Element
-      var restaurantPhotoCard = $("<img>").attr("src", "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + placesData2.result.photos[0].photo_reference + "&sensor=false&maxheight=200&maxwidth=200" + authKey);
+      var restaurantPhoto = $("<img>").attr("src", "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + placesData2.result.photos[0].photo_reference + "&sensor=false&maxheight=200&maxwidth=200" + authKey);
 
       //Restaurant Address & Element
       var restaurantAddress = placesData2.result.formatted_address;
@@ -171,20 +171,27 @@ $(document).ready(function () {
     var restURL = restURL + authKey;
 
     var states = ["al", "ak", "az", "ar", "ca", "co", "ct", "de", "dc", "fl", "ga", "hi", "id", "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "my", "nc", "nd", "oh", "ok", "or", "pa", "ri", "sc", "sd", "tn", "tx", "ut", "vt", "va", "wa", "wv", "wi", "wy"];
+    
     ///Conditions for input error
     if (userCity == "") {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a city.")
     } else if (userState == "") {
 
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a state.")
-    }
-    else if (states.indexOf(userState.toLowerCase()) == -1) {
+    } else if (states.indexOf(userState.toLowerCase()) == -1) {
+     
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter the abbreviation for your state. Example: North Carolina - NC")
-    }
-    else if (cuisine == "choose") {
+    } else if (cuisine == "choose") {
+     
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please choose a cuisine.")
     } else {
+de-bugging
       $(".restaurant-error-box").css("display", "none")
+
+      
+      $(".movie-error-box").css("display", "none")
+      
+ master
       //Send the AJAX Call the newly assembled URL
       runQuery(restURL);
     };

@@ -52,13 +52,11 @@ $(document).ready(function () {
           }
 
           var restNextPageURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken=" + placesData.next_page_token + authKey;
-          console.log(restNextPageURL);
 
           setTimeout(() => { $.ajax({
             url: restNextPageURL,
             method: "GET"
           }).then(function (placesDataNextPage) {
-            console.log(placesDataNextPage);
             for (var i = 0; i < placesDataNextPage.results.length; i++) {
               if (placesDataNextPage.results[i].business_status === "OPERATIONAL") {
                 restIDS.push(placesDataNextPage.results[i].place_id);
@@ -302,7 +300,7 @@ $(document).ready(function () {
             var linkSeparator = $("<div>");
 
             // A link to the justwatch search results showing movie availability on various platforms
-            var movieStreams = $("<a>").attr("href", "https://www.justwatch.com/us/search?q=" + movie.Title).attr("target", "_blank").html("Where to find it");
+            var movieStreams = $("<a>").attr("href", "https://www.justwatch.com/us/search?q=" + movie.Title).attr("target", "_blank").html("Where and how to watch it");
             // Text informing the user to tap or hover
             
             

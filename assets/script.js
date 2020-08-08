@@ -175,23 +175,18 @@ $(document).ready(function () {
     ///Conditions for input error
     if (userCity == "") {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a city.")
-    } else if (userState == "") {
-
+    } 
+    else if (userState == "") {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a state.")
-    } else if (states.indexOf(userState.toLowerCase()) == -1) {
-     
+    } 
+    else if (states.indexOf(userState.toLowerCase()) == -1) {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter the abbreviation for your state. Example: North Carolina - NC")
-    } else if (cuisine == "choose") {
-     
+    } 
+    else if (cuisine == "choose") {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please choose a cuisine.")
-    } else {
-de-bugging
+    } 
+    else {
       $(".restaurant-error-box").css("display", "none")
-
-      
-      $(".movie-error-box").css("display", "none")
-      
- master
       //Send the AJAX Call the newly assembled URL
       runQuery(restURL);
     };

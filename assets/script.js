@@ -35,11 +35,7 @@ $(document).ready(function () {
       .then(function (placesData) {
 
         var restIDS = [];
-        console.log(rQueryURL);
 
-
-        console.log("Here are our places " + placesData);
- 
         if (placesData.status == "ZERO_RESULTS") {
           $(".restaurant-error-box").css("display", "block").text("Oops!  Please check above fields for spelling errors.")
 
@@ -86,7 +82,7 @@ $(document).ready(function () {
       url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + restaurant + "&fields=name,photo,formatted_address,url,website,rating,formatted_phone_number,opening_hours" + authKey,
       method: "GET"
     }).then(function (placesData2) {
-      console.log(placesData2);
+
       //Restaurant Name & Element
       var restaurantName = placesData2.result.name;
       var restaurantNameCard = $("<h4>").html(restaurantName).attr("class", "rest-title");
@@ -176,6 +172,7 @@ $(document).ready(function () {
     var restURL = restURL + authKey;
 
     var states = ["al", "ak", "az", "ar", "ca", "co", "ct", "de", "dc", "fl", "ga", "hi", "id", "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "my", "nc", "nd", "oh", "ok", "or", "pa", "ri", "sc", "sd", "tn", "tx", "ut", "vt", "va", "wa", "wv", "wi", "wy"];
+
     ///Conditions for input error
     if (userCity == "") {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a city.")
@@ -192,7 +189,6 @@ $(document).ready(function () {
       $(".restaurant-error-box").css("display", "none")
       //Send the AJAX Call the newly assembled URL
       runQuery(restURL);
-  
     };
   });
 
@@ -202,6 +198,7 @@ $(document).ready(function () {
   $("#movie-btn").on("click", function findMovie() {
 
     $("h5").remove();
+
   // ______________________________________________________________
   // Assigning variables to our user-selected search criteria:
 
@@ -296,21 +293,16 @@ $(document).ready(function () {
             var moviePlot = $("<p>").html(movie.Plot).attr("class", "p-plot");
             // A link to the youtube search results for the movie trailer
             var movieTrailer = $("<a>").attr("href", "https://www.youtube.com/results?search_query=" + movie.Title + "+trailer").attr("target", "_blank").html("View trailers here");
-
             var linkSeparator = $("<div>");
 
             // A link to the justwatch search results showing movie availability on various platforms
             var movieStreams = $("<a>").attr("href", "https://www.justwatch.com/us/search?q=" + movie.Title).attr("target", "_blank").html("Where and how to watch it");
             // Text informing the user to tap or hover
             
-            
-
             // Appending each movie
             movieRow.append(movieCol.append(movieCard));       
             movieCard.append(movieCardBody, moviePoster);
             movieCardBody.append(movieName, movieRating, movieCast, moviePlot, movieTrailer, linkSeparator, movieStreams);
-            
-
           })
         }
         var viewInstructions = $("<h5>").attr("class", "view-instructions").html("Tap or hover over your movie poster to see details!");

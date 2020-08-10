@@ -50,20 +50,6 @@ $(document).ready(function () {
             }
           }
 
-          // var restNextPageURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken=" + placesData.next_page_token + authKey;
-
-          // setTimeout(() => {
-          //   $.ajax({
-          //     url: restNextPageURL,
-          //     method: "GET"
-          //   }).then(function (placesDataNextPage) {
-          //     for (var i = 0; i < placesDataNextPage.results.length; i++) {
-          //       if (placesDataNextPage.results[i].business_status === "OPERATIONAL") {
-          //         restIDS.push(placesDataNextPage.results[i].place_id);
-          //       }
-          //     }
-          //   })
-
             // Randomize generator
             var j = Math.floor(Math.random() * (restIDS.length - 3));
             for (var i = j; i < (j + 3); i++) {

@@ -1,8 +1,8 @@
 
 $(document).ready(function () {
 
-//_________________________________________________________________
-//RESTAURANT GENERATOR
+  //_________________________________________________________________
+  //RESTAURANT GENERATOR
 
   // ______________________________________________________________
   // Variables for url for ajax call
@@ -16,6 +16,8 @@ $(document).ready(function () {
   // ______________________________________________________________
   // Function to generate restaurants
   function runQuery(rQueryURL) {
+    // Empty previous generated restaurants
+    $(".restaurant-col").remove();
 
     // Loading Animation
     var loadingEl = $("<div>").attr("class", "loading-dots");
@@ -34,13 +36,13 @@ $(document).ready(function () {
     })
       .then(function (placesData) {
 
-
         var restIDS = [];
 
         if (placesData.status == "ZERO_RESULTS") {
           $(".restaurant-error-box").css("display", "block").text("Oops!  Please check above fields for spelling errors.")
 
-        } else {
+        } 
+        else {
 
           for (var i = 0; i < placesData.results.length; i++) {
             if (placesData.results[i].business_status === "OPERATIONAL") {
@@ -48,29 +50,26 @@ $(document).ready(function () {
             }
           }
 
-          var restNextPageURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken=" + placesData.next_page_token + authKey;
+          // var restNextPageURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken=" + placesData.next_page_token + authKey;
 
-          setTimeout(() => { $.ajax({
-            url: restNextPageURL,
-            method: "GET"
-          }).then(function (placesDataNextPage) {
-            for (var i = 0; i < placesDataNextPage.results.length; i++) {
-              if (placesDataNextPage.results[i].business_status === "OPERATIONAL") {
-                restIDS.push(placesDataNextPage.results[i].place_id);
-              }
-            }
-          })
-          // Empty loading animation
-          $(".restaurant-row").empty();
+          // setTimeout(() => {
+          //   $.ajax({
+          //     url: restNextPageURL,
+          //     method: "GET"
+          //   }).then(function (placesDataNextPage) {
+          //     for (var i = 0; i < placesDataNextPage.results.length; i++) {
+          //       if (placesDataNextPage.results[i].business_status === "OPERATIONAL") {
+          //         restIDS.push(placesDataNextPage.results[i].place_id);
+          //       }
+          //     }
+          //   })
 
-          // Randomize generator
-          var j = Math.floor(Math.random() * (restIDS.length - 3));
-          for (var i = j; i < (j + 3); i++) {
-            // Empty previous generated restaurants
-            $(".restaurant-col").remove();
-    
-            getRestaurantDetails(restIDS[i]);
-          }; }, 1500);
+            // Randomize generator
+            var j = Math.floor(Math.random() * (restIDS.length - 3));
+            for (var i = j; i < (j + 3); i++) {
+              getRestaurantDetails(restIDS[i]);
+            };
+          // }, 1500);
         };
       });
   };
@@ -83,7 +82,6 @@ $(document).ready(function () {
       url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + restaurant + "&fields=name,photo,formatted_address,url,website,rating,formatted_phone_number,opening_hours" + authKey,
       method: "GET"
     }).then(function (placesData2) {
-
 
       //Restaurant Name & Element
       var restaurantName = placesData2.result.name;
@@ -130,7 +128,7 @@ $(document).ready(function () {
       var restaurantHoursEl = $("<div>").addClass("class", "col-sm-5 offset-sm-2 col-md-6 offset-md-0");
       restaurantRow1.append(restaurantPhotoEl, restaurantHoursEl);
       restaurantPhotoEl.append(restaurantPhoto);
-      
+
       //Restaurant Hours      
       if (placesData2.result.hasOwnProperty("opening_hours")) {
         var restaurantHours = placesData2.result.opening_hours.weekday_text;
@@ -138,8 +136,16 @@ $(document).ready(function () {
           var restaurantHoursCard = $("<p>").html(restaurantHours[i]).attr("class", "rest-hours");
           restaurantHoursEl.append(restaurantHoursCard);
         }
-      };	
+      };
       restaurantCardBody.append(restaurantPhoneCard, restaurantAddressCard, restaurantMap, restaurantRatingCard, restaurantURL);
+
+      // Empty loading animation
+      $(".loading-dots").remove();
+
+      // Update button text
+      $("#rest-btn").text("Click for more");
+
+      // Create scroll option
       var scrollBtnR = $(".scroll-btnR")
       $(scrollBtnR).removeClass("hidden");
     });
@@ -150,15 +156,14 @@ $(document).ready(function () {
   // Main Function when the "Get Restaurant" button is clicked
   $('#rest-btn').on('click', function () {
 
-    $("#rest-btn").text("Click for more");
-
     //Get Cuisine
     var cuisine = $('#rest-cuisine').val();
 
     //Add Cuisine, with an option to search for any type or a specified one.
     if (cuisine == "any") {
       var restURL = queryURLBase + "restaurants+in+";
-    } else {
+    } 
+    else {
       var restURL = queryURLBase + cuisine + "+restaurants+in+";
     };
 
@@ -182,7 +187,8 @@ $(document).ready(function () {
     ///Conditions for input error
     if (userCity == "") {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a city.")
-    } else if (userState == "") {
+    } 
+    else if (userState == "") {
 
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please enter a state.")
     }
@@ -191,23 +197,25 @@ $(document).ready(function () {
     }
     else if (cuisine == "choose") {
       $(".restaurant-error-box").css("display", "block").text("Oops!  Please choose a cuisine.")
-    } else {
+    } 
+    else {
       $(".restaurant-error-box").css("display", "none")
       //Send the AJAX Call the newly assembled URL
       runQuery(restURL);
     };
   });
 
+
+
   // ______________________________________________________________
   //MOVIE GENERATOR
 
   $("#movie-btn").on("click", function findMovie() {
 
-    $("#movie-btn").text("Click for more");
     $("h5").remove();
 
-  // ______________________________________________________________
-  // Assigning variables to our user-selected search criteria:
+    // ______________________________________________________________
+    // Assigning variables to our user-selected search criteria:
 
     // Earliest year to show
     var startYear = $(".earliest-year-selector").val().trim();
@@ -216,27 +224,27 @@ $(document).ready(function () {
     // User genre selection
     var genre = $("#genre-input").val();
 
-  // ______________________________________________________________
-  // Testing validity of user entries:
+    // ______________________________________________________________
+    // Testing validity of user entries:
 
     // Ensures genre is selected from the drop-down
-  if (genre == "Choose...") {
-    $(".movie-error-box").css("display", "block").text("Oops!  Please choose a genre.")
-    // Ensures a date isn't selected too far in the past or in the future
-  } else if (startYear > 2020 || startYear < 1900 || endYear < 1900 || endYear > 2020) {
-    $(".movie-error-box").css("display", "block").text("Oops!  Please choose a start and end year between 1900 and 2020.")
-    // Ensures the start date isn't later than the end date
-  } else if (startYear > endYear) {
-    $(".movie-error-box").css("display", "block").text("Oops!  Please choose a starting year earlier than or equal to the ending year.")
-    // Ensures the date parameters are numbers
-  } else if (parseInt(startYear) != startYear || parseInt(endYear) != endYear) {
-    $(".movie-error-box").css("display", "block").text("Oops!  Your start and end year must be a four-digit number.")
-    // All clear to proceed with the search
-  } else {
-    $(".movie-error-box").css("display", "none");
+    if (genre == "Choose...") {
+      $(".movie-error-box").css("display", "block").text("Oops!  Please choose a genre.")
+      // Ensures a date isn't selected too far in the past or in the future
+    } else if (startYear > 2020 || startYear < 1900 || endYear < 1900 || endYear > 2020) {
+      $(".movie-error-box").css("display", "block").text("Oops!  Please choose a start and end year between 1900 and 2020.")
+      // Ensures the start date isn't later than the end date
+    } else if (startYear > endYear) {
+      $(".movie-error-box").css("display", "block").text("Oops!  Please choose a starting year earlier than or equal to the ending year.")
+      // Ensures the date parameters are numbers
+    } else if (parseInt(startYear) != startYear || parseInt(endYear) != endYear) {
+      $(".movie-error-box").css("display", "block").text("Oops!  Your start and end year must be a four-digit number.")
+      // All clear to proceed with the search
+    } else {
+      $(".movie-error-box").css("display", "none");
 
-  // ______________________________________________________________
-  // Main process to retrieve three movie names from TMDB
+      // ______________________________________________________________
+      // Main process to retrieve three movie names from TMDB
 
       // Ajax call to retrieve movie titles based off of above criteria (tmdb)
       $.ajax({
@@ -257,8 +265,8 @@ $(document).ready(function () {
           // Clearing out previous movies generated
           $(".movie-col").remove();
 
-  // ______________________________________________________________
-  // With the movie name and release year retrieved, we are now ready to plug these values into an ajax call from OMDB that will give us more info about the movie
+          // ______________________________________________________________
+          // With the movie name and release year retrieved, we are now ready to plug these values into an ajax call from OMDB that will give us more info about the movie
 
           // Setting parameters for second ajax call (omdb)
           var param = $.param({
@@ -277,9 +285,9 @@ $(document).ready(function () {
               findMovie();
             }
 
-  // ______________________________________________________________
-  // Generating dynamic elements for each movie chosen.
-            
+            // ______________________________________________________________
+            // Generating dynamic elements for each movie chosen.
+
             // Variable for the movie row existing in the HTML
             var movieRow = $(".movie-row");
             // Creating a column within the movie row
@@ -287,9 +295,9 @@ $(document).ready(function () {
             // Creating a Bootstrap card within the column
             var movieCard = $("<div>").attr("class", "card movie-card ");
             // Movie Poster which will be overlaid on top of the body initially
-            var moviePoster = $("<img>").attr({"src":movie.Poster,"class":"movie-poster"});
+            var moviePoster = $("<img>").attr({ "src": movie.Poster, "class": "movie-poster" });
             // Body of the card, where the movie info will be
-            var movieCardBody = $("<div>").attr("class", "card-body movie-card-body");        
+            var movieCardBody = $("<div>").attr("class", "card-body movie-card-body");
             // Movie Name element
             var movieName = $("<h4>").html(movie.Title).attr("class", "movie-title");
             // Movie's MPAA rating
@@ -305,15 +313,18 @@ $(document).ready(function () {
             // A link to the justwatch search results showing movie availability on various platforms
             var movieStreams = $("<a>").attr("href", "https://www.justwatch.com/us/search?q=" + movie.Title).attr("target", "_blank").html("Where and how to watch it");
             // Text informing the user to tap or hover
-            
+
             // Appending each movie
-            movieRow.append(movieCol.append(movieCard));       
+            movieRow.append(movieCol.append(movieCard));
             movieCard.append(movieCardBody, moviePoster);
             movieCardBody.append(movieName, movieRating, movieCast, moviePlot, movieTrailer, linkSeparator, movieStreams);
           })
         }
         var viewInstructions = $("<h5>").attr("class", "view-instructions").html("Tap or hover over your movie poster to see details!");
         $(".col-movie-text").append(viewInstructions);
+
+        // Update button text
+        $("#movie-btn").text("Click for more");
 
       });
     }

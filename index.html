@@ -8,7 +8,7 @@
     <!-- Favicon -->
     <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
     
-    <!-- Bootstrap CDN -->
+    <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -65,6 +65,9 @@
             <div class="col-md-1"></div>
             <div class="col-md-5 text-center">
               <h3 class="restaurant-header">Let's find some delivery or takeout for your special evening</h3>
+              <div class="restaurant-error-box">
+                <p class="restaurant-error-text">test</p>
+              </div>
             </div>
             <div class="col-md-6  restaurant-inputs">
               
@@ -98,7 +101,7 @@
                   <label class="input-group-text" for="inputGroupSelect01">Cuisine</label>
                 </div>
                 <select class="custom-select" id="rest-cuisine">
-                  <option selected>Choose...</option>
+                  <option selected value="choose">Choose...</option>
                   <option value="any">Any</option>
                   <option value="american">American</option>
                   <option value="asian">Asian</option>
@@ -232,7 +235,7 @@
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- Bootstrap CDN -->
+    <!-- Bootstrap JS CDN -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Local Script -->
     <script src="assets/script.js"></script>

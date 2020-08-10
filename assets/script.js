@@ -34,6 +34,7 @@ $(document).ready(function () {
     })
       .then(function (placesData) {
 
+
         var restIDS = [];
 
         if (placesData.status == "ZERO_RESULTS") {
@@ -83,7 +84,6 @@ $(document).ready(function () {
       method: "GET"
     }).then(function (placesData2) {
 
-      console.log(placesData2);
 
       //Restaurant Name & Element
       var restaurantName = placesData2.result.name;
@@ -130,26 +130,16 @@ $(document).ready(function () {
       var restaurantHoursEl = $("<div>").addClass("class", "col-sm-5 offset-sm-2 col-md-6 offset-md-0");
       restaurantRow1.append(restaurantPhotoEl, restaurantHoursEl);
       restaurantPhotoEl.append(restaurantPhoto);
-      //Restaurant Hours
-
-      console.log("Here is the array: " + placesData2);
-
-      var restaurantHours = placesData2.result.opening_hours.weekday_text;
-      console.log("Here are restaurant hours before the for loop in the function " + restaurantHours);
-      console.log("Here is the type" + restaurantHours);
-
-      // WIP | Restaurant Hours display
       
-      // if (restaurantHours !== undefined) {
-      //   // console.log("Is the variable defined?" + restaurantHours !== "undefined");
-      //   for (var i = 0; i < restaurantHours.length; i++) {
-      //     // console.log(restaurantHours);
-      //     var restaurantHoursCard = $("<p>").html(restaurantHours[i]).attr("class", "rest-hours");
-      //     restaurantHoursEl.append(restaurantHoursCard);
-      //   }
-      // };	
+      //Restaurant Hours      
+      if (placesData2.result.hasOwnProperty("opening_hours")) {
+        var restaurantHours = placesData2.result.opening_hours.weekday_text;
+        for (var i = 0; i < restaurantHours.length; i++) {
+          var restaurantHoursCard = $("<p>").html(restaurantHours[i]).attr("class", "rest-hours");
+          restaurantHoursEl.append(restaurantHoursCard);
+        }
+      };	
       restaurantCardBody.append(restaurantPhoneCard, restaurantAddressCard, restaurantMap, restaurantRatingCard, restaurantURL);
-
       var scrollBtnR = $(".scroll-btnR")
       $(scrollBtnR).removeClass("hidden");
     });

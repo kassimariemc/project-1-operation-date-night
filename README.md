@@ -1,4 +1,4 @@
-# project-1-operation-date-night
+# operation-date-night
 A simple app that helps you enjoy a night at home with dinner and a movie, so you can still have a date experience from the comfort and safety of your own home. 
 
 ![image](https://user-images.githubusercontent.com/66877217/89837342-c6e78500-db36-11ea-9637-fe7481d9f5ef.png)
@@ -14,7 +14,7 @@ A simple app that helps you enjoy a night at home with dinner and a movie, so yo
 
 ## Deployment
 
-[link to deployment](https://kassimariemc.github.io/project-1-operation-date-night/)
+[link to deployment](https://kassimariemc.github.io/operation-date-night/)
 
 
 ## Contributors
